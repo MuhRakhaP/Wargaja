@@ -1,0 +1,32 @@
+{
+  "fidelity": "brand",
+  "template": null,
+  "fonts": {
+    "heading": "Segoe UI",
+    "body": "Segoe UI"
+  },
+  "colours": {
+    "ink": "#232323",
+    "paper": "#FAF6EF",
+    "accent": "#E1621B",
+    "muted": "#6E655C",
+    "charcoal": "#232323",
+    "offwhite": "#FAF6EF",
+    "white": "#FFFFFF",
+    "warmorange": "#E1621B",
+    "orangeDeep": "#B24A12"
+  },
+  "tokens": {
+    "shape": {
+      "corner": "rounded",
+      "hairline_pt": 1.0
+    },
+    "type_scale": {
+      "display": 72,
+      "title": 48,
+      "h1": 32,
+      "body": 20,
+      "caption": 16
+    }
+  }
+}
