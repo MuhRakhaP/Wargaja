@@ -41,7 +41,7 @@ class AboutAppDialog extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Rukunin',
+              'Wargaja',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

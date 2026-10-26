@@ -90,7 +90,7 @@ class MainApp extends StatelessWidget {
         return BiometricLockScreen(
           child: MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            title: 'Rukunin',
+            title: 'Wargaja',
             theme: rukuninTheme,
             routerConfig: router,
             localizationsDelegates: const [

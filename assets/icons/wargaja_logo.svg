@@ -1,0 +1,29 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield background with stronger geometry -->
+  <defs>
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563EB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1D4ED8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Shield shape (rounded bottom point) -->
+  <path d="M 100 15 L 165 45 L 165 115 C 165 160 100 185 100 185 C 100 185 35 160 35 115 L 35 45 Z" 
+        fill="url(#shieldGradient)" stroke="none"/>
+  
+  <!-- White house silhouette (simplified for small sizes) -->
+  <g transform="translate(100, 105)">
+    <!-- Roof triangle (prominent) -->
+    <polygon points="0,-40 -32,-8 32,-8" fill="white"/>
+    
+    <!-- House body (rectangle) -->
+    <rect x="-28" y="-8" width="56" height="45" fill="white"/>
+    
+    <!-- Door (darker blue for contrast at small sizes) -->
+    <rect x="-10" y="8" width="20" height="28" fill="#1D4ED8" opacity="0.15"/>
+    
+    <!-- Windows with better contrast -->
+    <rect x="-22" y="-2" width="14" height="14" fill="#1D4ED8" opacity="0.2"/>
+    <rect x="8" y="-2" width="14" height="14" fill="#1D4ED8" opacity="0.2"/>
+  </g>
+</svg>
