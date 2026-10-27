@@ -3,15 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:rukunin/firebase_options.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
-import 'package:rukunin/theme/rukunin_theme.dart';
-import 'package:rukunin/utils/wrapper/mobile_preview_wrapper_helper.dart';
-import 'package:rukunin/routes/routes.dart';
-import 'package:rukunin/pages/biometric_lock_screen.dart';
-import 'package:rukunin/services/locale_service.dart';
-import 'package:rukunin/services/notification_service.dart';
-import 'package:rukunin/utils/javanese_material_localizations.dart';
+import 'package:wargaja/firebase_options.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
+import 'package:wargaja/theme/rukunin_theme.dart';
+import 'package:wargaja/utils/wrapper/mobile_preview_wrapper_helper.dart';
+import 'package:wargaja/routes/routes.dart';
+import 'package:wargaja/pages/biometric_lock_screen.dart';
+import 'package:wargaja/services/locale_service.dart';
+import 'package:wargaja/services/notification_service.dart';
+import 'package:wargaja/utils/javanese_material_localizations.dart';
 
 final localeService = LocaleService();
 
