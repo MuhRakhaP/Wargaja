@@ -19,9 +19,10 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
 
-    @Suppress("DEPRECATION")
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+        }
     }
 
     defaultConfig {
