@@ -41,7 +41,7 @@ jobs:
           flutter pub run flutter_native_splash:create
       
       - name: Build APK (Debug)
-        run: flutter build apk --debug
+        run: flutter build apk --debug 2>&1 | tail -100
         
       - name: Build APK (Release)
         run: flutter build apk --release
