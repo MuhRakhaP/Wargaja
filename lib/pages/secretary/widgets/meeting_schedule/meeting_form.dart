@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/secretary/widgets/meeting_schedule/meeting_model.dart';
-import 'package:rukunin/pages/secretary/widgets/meeting_schedule/meeting_service.dart';
+import 'package:wargaja/pages/secretary/widgets/meeting_schedule/meeting_model.dart';
+import 'package:wargaja/pages/secretary/widgets/meeting_schedule/meeting_service.dart';
 
 class MeetingForm extends StatefulWidget {
   const MeetingForm({super.key});

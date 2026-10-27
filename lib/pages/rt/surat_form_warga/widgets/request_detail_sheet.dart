@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rt/surat_form_warga/models/document_request.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/input_decorations.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
+import 'package:wargaja/pages/rt/surat_form_warga/models/document_request.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/input_decorations.dart';
+import 'package:wargaja/widgets/loading_indicator.dart';
 
 class RequestDetailSheet extends StatefulWidget {
   final DocumentRequest request;

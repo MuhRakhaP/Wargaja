@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:rukunin/services/user_cache_service.dart';
+import 'package:wargaja/services/user_cache_service.dart';
 
 class AccountService {
   final _auth = FirebaseAuth.instance;

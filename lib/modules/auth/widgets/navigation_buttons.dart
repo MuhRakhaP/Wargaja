@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/loading_indicator.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
 
 class NavigationButtons extends StatelessWidget {
   final int currentPage;

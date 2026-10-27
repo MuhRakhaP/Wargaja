@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/secretary/widgets/letter/custom_text_field.dart';
+import 'package:wargaja/pages/secretary/widgets/letter/custom_text_field.dart';
 
 class LetterInfoForm extends StatelessWidget {
   final TextEditingController nomorSurat;

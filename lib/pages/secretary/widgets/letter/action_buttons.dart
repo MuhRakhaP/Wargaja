@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/theme/app_colors.dart';
 
 class ActionButtons extends StatelessWidget {
   final VoidCallback onPreview;

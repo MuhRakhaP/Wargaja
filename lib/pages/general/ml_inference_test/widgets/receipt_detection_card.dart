@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/general/ml_inference_test/widgets/result_row.dart';
+import 'package:wargaja/pages/general/ml_inference_test/widgets/result_row.dart';
 
 class ReceiptDetectionCard extends StatelessWidget {
   final bool isReceiptDetectionTest;

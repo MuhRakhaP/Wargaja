@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/models/announcementRT.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/models/announcementRT.dart';
+import 'package:wargaja/theme/app_colors.dart';
 
 class AnnouncementDetailDialog extends StatelessWidget {
   final Announcement a;

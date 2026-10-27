@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/secretary/widgets/reports/reports_menu.dart';
+import 'package:wargaja/pages/secretary/widgets/reports/reports_menu.dart';
 
 class ReportsScreen extends StatelessWidget {
   const ReportsScreen({super.key});

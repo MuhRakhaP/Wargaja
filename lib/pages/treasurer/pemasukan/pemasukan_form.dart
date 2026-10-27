@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/services.dart';
 import 'dart:math';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/pages/treasurer/pemasukan/manual_review_page.dart';
-import 'package:rukunin/pages/treasurer/pemasukan/widgets/proof_area.dart';
-import 'package:rukunin/pages/treasurer/pemasukan/widgets/detection_result_sheet.dart';
-import 'package:rukunin/pages/treasurer/pemasukan/widgets/pemasukan_header.dart';
-import 'package:rukunin/pages/treasurer/pemasukan/widgets/form_fields_card.dart';
-import 'package:rukunin/pages/treasurer/pemasukan/widgets/notes_card.dart';
-import 'package:rukunin/pages/treasurer/pemasukan/widgets/submit_button.dart';
-import 'package:rukunin/pages/treasurer/pemasukan/widgets/camera_capture.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/pages/treasurer/pemasukan/manual_review_page.dart';
+import 'package:wargaja/pages/treasurer/pemasukan/widgets/proof_area.dart';
+import 'package:wargaja/pages/treasurer/pemasukan/widgets/detection_result_sheet.dart';
+import 'package:wargaja/pages/treasurer/pemasukan/widgets/pemasukan_header.dart';
+import 'package:wargaja/pages/treasurer/pemasukan/widgets/form_fields_card.dart';
+import 'package:wargaja/pages/treasurer/pemasukan/widgets/notes_card.dart';
+import 'package:wargaja/pages/treasurer/pemasukan/widgets/submit_button.dart';
+import 'package:wargaja/pages/treasurer/pemasukan/widgets/camera_capture.dart';
 
 enum ProofMode { photo, manual }
 

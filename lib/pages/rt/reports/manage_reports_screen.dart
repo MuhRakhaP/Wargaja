@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rt/reports/models/report_item.dart';
-import 'package:rukunin/pages/rt/reports/widgets/report_card.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/input_decorations.dart';
-import 'package:rukunin/repositories/reports_repository.dart';
+import 'package:wargaja/pages/rt/reports/models/report_item.dart';
+import 'package:wargaja/pages/rt/reports/widgets/report_card.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/input_decorations.dart';
+import 'package:wargaja/repositories/reports_repository.dart';
 
 class ManageReportsScreen extends StatefulWidget {
   const ManageReportsScreen({super.key});

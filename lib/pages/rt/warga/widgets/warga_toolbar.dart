@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/pages/rt/warga/widgets/search_bar.dart';
-import 'package:rukunin/pages/rt/warga/widgets/download_button.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/pages/rt/warga/widgets/search_bar.dart';
+import 'package:wargaja/pages/rt/warga/widgets/download_button.dart';
 
 class WargaToolbar extends StatelessWidget {
   final void Function(String) onSearchChanged;

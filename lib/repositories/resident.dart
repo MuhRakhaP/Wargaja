@@ -1,4 +1,4 @@
-import 'package:rukunin/models/resident.dart';
+import 'package:wargaja/models/resident.dart';
 
 class WargaRepository {
   /// Generate a list of dummy warga

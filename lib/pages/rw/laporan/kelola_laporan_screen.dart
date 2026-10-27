@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/laporan/widgets/rt_item_card.dart';
-import 'package:rukunin/pages/rw/laporan/widgets/rw_item_card.dart';
-import 'package:rukunin/pages/rw/laporan/widgets/rekap_summary_card.dart';
-import 'package:rukunin/pages/rw/laporan/data/dummy_data.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/pages/rw/laporan/widgets/rt_item_card.dart';
+import 'package:wargaja/pages/rw/laporan/widgets/rw_item_card.dart';
+import 'package:wargaja/pages/rw/laporan/widgets/rekap_summary_card.dart';
+import 'package:wargaja/pages/rw/laporan/data/dummy_data.dart';
+import 'package:wargaja/theme/app_colors.dart';
 
 class KelolaLaporanScreen extends StatefulWidget {
   const KelolaLaporanScreen({super.key});

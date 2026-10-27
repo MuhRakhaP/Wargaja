@@ -1,5 +1,5 @@
-import 'package:rukunin/models/street.dart';
-import 'package:rukunin/repositories/resident.dart' as residentRepo;
+import 'package:wargaja/models/street.dart';
+import 'package:wargaja/repositories/resident.dart' as residentRepo;
 
 List<Map<String, dynamic>> generateAssignedResidents(
   List<Street> streets, {

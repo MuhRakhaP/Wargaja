@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rt/warga/widgets/warga_card.dart';
-import 'package:rukunin/pages/rt/warga/list_warga/warga_detail_screen.dart';
-import 'package:rukunin/pages/rt/warga/list_warga/warga_add_screen.dart';
-import 'package:rukunin/models/resident.dart';
-import 'package:rukunin/repositories/resident.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/pages/rt/warga/widgets/warga_card.dart';
+import 'package:wargaja/pages/rt/warga/list_warga/warga_detail_screen.dart';
+import 'package:wargaja/pages/rt/warga/list_warga/warga_add_screen.dart';
+import 'package:wargaja/models/resident.dart';
+import 'package:wargaja/repositories/resident.dart';
+import 'package:wargaja/theme/app_colors.dart';
 // toolbar uses internal widgets; imports moved to toolbar widget file
-import 'package:rukunin/pages/rt/warga/widgets/warga_toolbar.dart';
-import 'package:rukunin/pages/rt/warga/widgets/delete_background.dart';
-import 'package:rukunin/pages/rt/wilayah/widgets/confirm_dialogs.dart';
+import 'package:wargaja/pages/rt/warga/widgets/warga_toolbar.dart';
+import 'package:wargaja/pages/rt/warga/widgets/delete_background.dart';
+import 'package:wargaja/pages/rt/wilayah/widgets/confirm_dialogs.dart';
 
 class WargaListScreen extends StatefulWidget {
   const WargaListScreen({super.key});

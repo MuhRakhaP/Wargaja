@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/secretary/widgets/notulensi/minutes_model.dart';
+import 'package:wargaja/pages/secretary/widgets/notulensi/minutes_model.dart';
 
 class MinutesDetailPage extends StatelessWidget {
   final MinutesModel minutes;

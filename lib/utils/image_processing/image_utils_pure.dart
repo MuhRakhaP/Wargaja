@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:image/image.dart' as img;
-import 'package:rukunin/types/image_matrix.dart';
+import 'package:wargaja/types/image_matrix.dart';
 
 class ImageUtilsPure {
   static Uint8List float32ToPng(Float32List data, int width, int height) {

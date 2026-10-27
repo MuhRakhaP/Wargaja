@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:rukunin/types/image_matrix.dart';
+import 'package:wargaja/types/image_matrix.dart';
 
 class SsimMetric {
   static double structuralSimilarity(

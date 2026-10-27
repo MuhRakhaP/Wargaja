@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
-import 'package:rukunin/models/category.dart';
-import 'package:rukunin/repositories/data_iuran_repository.dart';
+import 'package:wargaja/models/category.dart';
+import 'package:wargaja/repositories/data_iuran_repository.dart';
 
 class CategoryRepository {
   static final CategoryRepository _instance = CategoryRepository._internal();

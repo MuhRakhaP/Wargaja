@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/modules/community/widgets/components/payment_item_card.dart';
-import 'package:rukunin/modules/community/services/dues_service.dart';
-import 'package:rukunin/modules/community/models/dues_payment.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/modules/community/widgets/components/payment_item_card.dart';
+import 'package:wargaja/modules/community/services/dues_service.dart';
+import 'package:wargaja/modules/community/models/dues_payment.dart';
 
 class PaymentHistorySection extends StatefulWidget {
   const PaymentHistorySection({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/rapat/rapat_rw_card.dart';
-import 'package:rukunin/pages/rw/rapat/rapat_rw_detail.dart';
-import 'package:rukunin/pages/rw/rapat/tambah_rapat_rw_screen.dart';
+import 'package:wargaja/pages/rw/rapat/rapat_rw_card.dart';
+import 'package:wargaja/pages/rw/rapat/rapat_rw_detail.dart';
+import 'package:wargaja/pages/rw/rapat/tambah_rapat_rw_screen.dart';
 
 class RapatRwScreen extends StatefulWidget {
   const RapatRwScreen({super.key});

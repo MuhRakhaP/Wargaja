@@ -5,12 +5,12 @@ import 'package:flutter/foundation.dart' show kIsWeb, compute;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rukunin/modules/community/services/dues_service.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/types/image_matrix.dart';
-import 'package:rukunin/utils/image_processing/image_utils_pure.dart';
-import 'package:rukunin/utils/image_processing/image_utils_ui.dart';
-import 'package:rukunin/utils/metrics/ssim_metric.dart';
+import 'package:wargaja/modules/community/services/dues_service.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/types/image_matrix.dart';
+import 'package:wargaja/utils/image_processing/image_utils_pure.dart';
+import 'package:wargaja/utils/image_processing/image_utils_ui.dart';
+import 'package:wargaja/utils/metrics/ssim_metric.dart';
 
 class SsimRequest {
   final ImageMatrix template;

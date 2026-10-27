@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rt/components/task_item.dart';
+import 'package:wargaja/pages/rt/components/task_item.dart';
 
 class PendingTasks extends StatelessWidget {
   const PendingTasks({super.key});

@@ -1,5 +1,5 @@
-import 'package:rukunin/models/resident.dart';
-import 'package:rukunin/repositories/resident.dart' as residentRepo;
+import 'package:wargaja/models/resident.dart';
+import 'package:wargaja/repositories/resident.dart' as residentRepo;
 
 /// KK repository provides KK-specific views over residents.
 class KkRepository {

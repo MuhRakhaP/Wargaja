@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rukunin/utils/role_based_navigator.dart';
+import 'package:wargaja/utils/role_based_navigator.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -1,12 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:rukunin/models/app_notification.dart';
-import 'package:rukunin/repositories/app_notifications.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/modules/notification/widgets/notification_tab_chip.dart';
-import 'package:rukunin/modules/notification/widgets/notification_card.dart';
-import 'package:rukunin/modules/notification/widgets/notification_empty_state.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
+import 'package:wargaja/models/app_notification.dart';
+import 'package:wargaja/repositories/app_notifications.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/modules/notification/widgets/notification_tab_chip.dart';
+import 'package:wargaja/modules/notification/widgets/notification_card.dart';
+import 'package:wargaja/modules/notification/widgets/notification_empty_state.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});

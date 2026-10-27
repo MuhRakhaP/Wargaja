@@ -1,4 +1,4 @@
-import 'package:rukunin/pages/secretary/widgets/meeting_schedule/meeting_model.dart';
+import 'package:wargaja/pages/secretary/widgets/meeting_schedule/meeting_model.dart';
 
 class MeetingService {
   static final List<MeetingModel> _meetings = [];

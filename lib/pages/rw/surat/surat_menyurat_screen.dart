@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/surat/models/surat_model.dart';
-import 'package:rukunin/pages/rw/surat/widgets/surat_card.dart';
-import 'package:rukunin/pages/rw/surat/widgets/filter_chips.dart';
-import 'package:rukunin/pages/rw/surat/screens/tambah_surat_screen.dart';
-import 'package:rukunin/pages/rw/surat/screens/detail_surat_screen.dart';
+import 'package:wargaja/pages/rw/surat/models/surat_model.dart';
+import 'package:wargaja/pages/rw/surat/widgets/surat_card.dart';
+import 'package:wargaja/pages/rw/surat/widgets/filter_chips.dart';
+import 'package:wargaja/pages/rw/surat/screens/tambah_surat_screen.dart';
+import 'package:wargaja/pages/rw/surat/screens/detail_surat_screen.dart';
 
 class SuratMenyuratScreen extends StatefulWidget {
   const SuratMenyuratScreen({super.key});

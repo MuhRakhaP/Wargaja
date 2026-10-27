@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image/image.dart' as img;
-import 'package:rukunin/services/ml/data_preprocessor.dart';
+import 'package:wargaja/services/ml/data_preprocessor.dart';
 
 void main() {
   // This is needed to load assets in tests.

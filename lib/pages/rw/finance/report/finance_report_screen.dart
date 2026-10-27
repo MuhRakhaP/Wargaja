@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/finance/report/finance_report_card.dart';
-import 'package:rukunin/pages/rw/finance/report/finance_report_chart.dart';
-import 'package:rukunin/pages/rw/finance/report/finance_report_controller.dart';
+import 'package:wargaja/pages/rw/finance/report/finance_report_card.dart';
+import 'package:wargaja/pages/rw/finance/report/finance_report_chart.dart';
+import 'package:wargaja/pages/rw/finance/report/finance_report_controller.dart';
 
 class FinanceReportScreen extends StatefulWidget {
   const FinanceReportScreen({super.key});

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/models/street.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/repositories/resident.dart' as residentRepo;
-import 'package:rukunin/models/resident.dart';
-import 'package:rukunin/models/house.dart';
-import 'package:rukunin/pages/rt/wilayah/add_house_screen.dart';
-import 'package:rukunin/pages/rt/wilayah/widgets/house_tile.dart';
+import 'package:wargaja/models/street.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/repositories/resident.dart' as residentRepo;
+import 'package:wargaja/models/resident.dart';
+import 'package:wargaja/models/house.dart';
+import 'package:wargaja/pages/rt/wilayah/add_house_screen.dart';
+import 'package:wargaja/pages/rt/wilayah/widgets/house_tile.dart';
 
 class WilayahDetailScreen extends StatefulWidget {
   final Street street;

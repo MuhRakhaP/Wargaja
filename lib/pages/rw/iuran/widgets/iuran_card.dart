@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/iuran/models/status_iuran.dart';
+import 'package:wargaja/pages/rw/iuran/models/status_iuran.dart';
 
 class IuranCard extends StatelessWidget {
   final StatusIuran status;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/modules/marketplace/widgets/promo_banner_card.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/modules/marketplace/widgets/promo_banner_card.dart';
 import 'dart:async';
 
 class PromoBannerCarousel extends StatefulWidget {

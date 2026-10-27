@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/monitoring/monitoring_socket_service.dart';
+import 'package:wargaja/pages/rw/monitoring/monitoring_socket_service.dart';
 
 class MonitoringDashboardScreen extends StatefulWidget {
   const MonitoringDashboardScreen({super.key});

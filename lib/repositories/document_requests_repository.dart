@@ -1,4 +1,4 @@
-import 'package:rukunin/pages/rt/surat_form_warga/models/document_request.dart';
+import 'package:wargaja/pages/rt/surat_form_warga/models/document_request.dart';
 
 class DocumentRequestsRepository {
   static final DocumentRequestsRepository _instance =

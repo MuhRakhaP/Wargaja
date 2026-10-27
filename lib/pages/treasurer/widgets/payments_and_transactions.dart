@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rukunin/repositories/data_iuran_repository.dart';
-import 'package:rukunin/pages/treasurer/data_iuran/widgets/payment_verification_card.dart';
-import 'package:rukunin/repositories/transactions_repository.dart';
+import 'package:wargaja/repositories/data_iuran_repository.dart';
+import 'package:wargaja/pages/treasurer/data_iuran/widgets/payment_verification_card.dart';
+import 'package:wargaja/repositories/transactions_repository.dart';
 
 class PaymentsAndTransactions extends StatelessWidget {
   const PaymentsAndTransactions({super.key});

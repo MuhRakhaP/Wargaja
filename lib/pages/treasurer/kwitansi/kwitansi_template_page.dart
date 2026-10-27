@@ -5,9 +5,9 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/input_decorations.dart';
-import 'package:rukunin/repositories/kwitansi_repository.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/input_decorations.dart';
+import 'package:wargaja/repositories/kwitansi_repository.dart';
 
 class KwitansiTemplatePage extends StatefulWidget {
   const KwitansiTemplatePage({super.key});

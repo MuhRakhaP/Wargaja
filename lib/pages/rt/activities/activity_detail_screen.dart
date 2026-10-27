@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/modules/activities/models/activity.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/pages/rt/activities/widgets/community_small_detail_card.dart';
-import 'package:rukunin/pages/rt/activities/activity_edit_screen.dart';
+import 'package:wargaja/modules/activities/models/activity.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/pages/rt/activities/widgets/community_small_detail_card.dart';
+import 'package:wargaja/pages/rt/activities/activity_edit_screen.dart';
 
 class RtActivityDetailScreen extends StatefulWidget {
   final Activity activity;

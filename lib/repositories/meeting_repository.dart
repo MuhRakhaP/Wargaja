@@ -1,4 +1,4 @@
-import 'package:rukunin/pages/rt/meetings/models/meeting.dart';
+import 'package:wargaja/pages/rt/meetings/models/meeting.dart';
 
 class MeetingRepository {
   static final List<Meeting> _items = _generateDummy();

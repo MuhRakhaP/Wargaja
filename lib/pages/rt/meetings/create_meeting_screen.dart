@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:rukunin/pages/rt/meetings/models/meeting.dart';
-import 'package:rukunin/widgets/input_decorations.dart';
-import 'package:rukunin/pages/rt/warga/widgets/form_actions.dart';
+import 'package:wargaja/pages/rt/meetings/models/meeting.dart';
+import 'package:wargaja/widgets/input_decorations.dart';
+import 'package:wargaja/pages/rt/warga/widgets/form_actions.dart';
 
 class CreateMeetingScreen extends StatefulWidget {
   const CreateMeetingScreen({super.key});

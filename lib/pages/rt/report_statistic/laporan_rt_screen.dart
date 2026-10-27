@@ -1,12 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/pages/rt/report_statistic/components/summary_row.dart';
-import 'package:rukunin/pages/rt/report_statistic/components/filters_row.dart';
-import 'package:rukunin/pages/rt/report_statistic/components/mini_charts.dart';
-import 'package:rukunin/pages/rt/report_statistic/components/sparkline_painter.dart';
-import 'package:rukunin/repositories/statistik_repository.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/pages/rt/report_statistic/components/summary_row.dart';
+import 'package:wargaja/pages/rt/report_statistic/components/filters_row.dart';
+import 'package:wargaja/pages/rt/report_statistic/components/mini_charts.dart';
+import 'package:wargaja/pages/rt/report_statistic/components/sparkline_painter.dart';
+import 'package:wargaja/repositories/statistik_repository.dart';
 
 class LaporanRTScreen extends StatefulWidget {
   const LaporanRTScreen({super.key});

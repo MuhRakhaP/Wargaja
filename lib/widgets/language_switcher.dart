@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/main.dart' show localeService;
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/main.dart' show localeService;
+import 'package:wargaja/theme/app_colors.dart';
 
 class LanguageSwitcher extends StatelessWidget {
   const LanguageSwitcher({super.key});

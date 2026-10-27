@@ -2,16 +2,16 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rukunin/services/ml/data_preprocessor.dart';
-import 'package:rukunin/services/ml/hog_isolate.dart';
-import 'package:rukunin/services/ml/onnx_service.dart';
-import 'package:rukunin/pages/general/ml_inference_test/models/ml_test_state.dart';
-import 'package:rukunin/pages/general/ml_inference_test/services/ml_firebase_service.dart';
-import 'package:rukunin/pages/general/ml_inference_test/widgets/step_card.dart';
-import 'package:rukunin/pages/general/ml_inference_test/widgets/result_row.dart';
-import 'package:rukunin/pages/general/ml_inference_test/widgets/input_selection_step.dart';
-import 'package:rukunin/pages/general/ml_inference_test/widgets/receipt_detection_card.dart';
-import 'package:rukunin/utils/image_processing/image_utils_pure.dart';
+import 'package:wargaja/services/ml/data_preprocessor.dart';
+import 'package:wargaja/services/ml/hog_isolate.dart';
+import 'package:wargaja/services/ml/onnx_service.dart';
+import 'package:wargaja/pages/general/ml_inference_test/models/ml_test_state.dart';
+import 'package:wargaja/pages/general/ml_inference_test/services/ml_firebase_service.dart';
+import 'package:wargaja/pages/general/ml_inference_test/widgets/step_card.dart';
+import 'package:wargaja/pages/general/ml_inference_test/widgets/result_row.dart';
+import 'package:wargaja/pages/general/ml_inference_test/widgets/input_selection_step.dart';
+import 'package:wargaja/pages/general/ml_inference_test/widgets/receipt_detection_card.dart';
+import 'package:wargaja/utils/image_processing/image_utils_pure.dart';
 
 export 'models/ml_test_state.dart' show ProcessingStep;
 

@@ -1,44 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:rukunin/modules/activities/pages/activity_screen.dart';
-import 'package:rukunin/modules/community/pages/community_screen.dart';
-import 'package:rukunin/modules/community/pages/document_request_form_screen.dart';
-import 'package:rukunin/modules/community/pages/documents_screen.dart';
-import 'package:rukunin/modules/community/pages/dues_screen.dart';
-import 'package:rukunin/modules/community/pages/family_details_screen.dart';
-import 'package:rukunin/modules/community/pages/finance_transparency_screen.dart';
-import 'package:rukunin/modules/community/pages/population_info_screen.dart';
-import 'package:rukunin/modules/marketplace/models/product.dart';
-import 'package:rukunin/modules/marketplace/models/shop.dart';
-import 'package:rukunin/modules/marketplace/pages/add_product_screen.dart';
-import 'package:rukunin/modules/marketplace/pages/cart_screen.dart';
-import 'package:rukunin/modules/marketplace/pages/marketplace_screen.dart';
-import 'package:rukunin/modules/marketplace/pages/my_products_screen.dart';
-import 'package:rukunin/modules/marketplace/pages/orders_screen.dart';
-import 'package:rukunin/modules/marketplace/pages/product_detail_screen.dart';
-import 'package:rukunin/modules/marketplace/pages/search_results_screen.dart';
-import 'package:rukunin/modules/marketplace/pages/shop_dashboard_screen.dart';
+import 'package:wargaja/modules/activities/pages/activity_screen.dart';
+import 'package:wargaja/modules/community/pages/community_screen.dart';
+import 'package:wargaja/modules/community/pages/document_request_form_screen.dart';
+import 'package:wargaja/modules/community/pages/documents_screen.dart';
+import 'package:wargaja/modules/community/pages/dues_screen.dart';
+import 'package:wargaja/modules/community/pages/family_details_screen.dart';
+import 'package:wargaja/modules/community/pages/finance_transparency_screen.dart';
+import 'package:wargaja/modules/community/pages/population_info_screen.dart';
+import 'package:wargaja/modules/marketplace/models/product.dart';
+import 'package:wargaja/modules/marketplace/models/shop.dart';
+import 'package:wargaja/modules/marketplace/pages/add_product_screen.dart';
+import 'package:wargaja/modules/marketplace/pages/cart_screen.dart';
+import 'package:wargaja/modules/marketplace/pages/marketplace_screen.dart';
+import 'package:wargaja/modules/marketplace/pages/my_products_screen.dart';
+import 'package:wargaja/modules/marketplace/pages/orders_screen.dart';
+import 'package:wargaja/modules/marketplace/pages/product_detail_screen.dart';
+import 'package:wargaja/modules/marketplace/pages/search_results_screen.dart';
+import 'package:wargaja/modules/marketplace/pages/shop_dashboard_screen.dart';
 
-import 'package:rukunin/pages/secretary/secretary_home_screen.dart';
-import 'package:rukunin/pages/general/account_screen.dart';
-import 'package:rukunin/pages/secretary/secretary_shell.dart';
+import 'package:wargaja/pages/secretary/secretary_home_screen.dart';
+import 'package:wargaja/pages/general/account_screen.dart';
+import 'package:wargaja/pages/secretary/secretary_shell.dart';
 
 // Hanya import yang masih dibutuhkan Sekretaris
-import 'package:rukunin/pages/secretary/pages/create_letter_screen.dart';
-import 'package:rukunin/pages/secretary/pages/archive_screen.dart';
-import 'package:rukunin/pages/secretary/pages/meeting_schedule_screen.dart';
-import 'package:rukunin/pages/secretary/pages/minutes_screen.dart';
-import 'package:rukunin/pages/secretary/pages/incoming_mail_screen.dart';
-import 'package:rukunin/pages/secretary/pages/outgoing_mail_screen.dart';
-import 'package:rukunin/pages/secretary/pages/residents_data_screen.dart';
-import 'package:rukunin/pages/secretary/pages/reports_screen.dart';
-import 'package:rukunin/pages/secretary/pages/letter_templates_screen.dart';
-import 'package:rukunin/pages/secretary/pages/letter_archive_screen.dart';
-import 'package:rukunin/pages/secretary/pages/meeting_invitations_screen.dart';
-import 'package:rukunin/pages/secretary/pages/certificates_screen.dart';
-import 'package:rukunin/pages/secretary/pages/monthly-reports_screen.dart';
-import 'package:rukunin/pages/secretary/pages/letter_history_screen.dart';
+import 'package:wargaja/pages/secretary/pages/create_letter_screen.dart';
+import 'package:wargaja/pages/secretary/pages/archive_screen.dart';
+import 'package:wargaja/pages/secretary/pages/meeting_schedule_screen.dart';
+import 'package:wargaja/pages/secretary/pages/minutes_screen.dart';
+import 'package:wargaja/pages/secretary/pages/incoming_mail_screen.dart';
+import 'package:wargaja/pages/secretary/pages/outgoing_mail_screen.dart';
+import 'package:wargaja/pages/secretary/pages/residents_data_screen.dart';
+import 'package:wargaja/pages/secretary/pages/reports_screen.dart';
+import 'package:wargaja/pages/secretary/pages/letter_templates_screen.dart';
+import 'package:wargaja/pages/secretary/pages/letter_archive_screen.dart';
+import 'package:wargaja/pages/secretary/pages/meeting_invitations_screen.dart';
+import 'package:wargaja/pages/secretary/pages/certificates_screen.dart';
+import 'package:wargaja/pages/secretary/pages/monthly-reports_screen.dart';
+import 'package:wargaja/pages/secretary/pages/letter_history_screen.dart';
 
 final secretaryRoutes = [
   // Main routes with bottom navigation

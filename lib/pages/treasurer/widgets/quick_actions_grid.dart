@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rukunin/widgets/menu_card.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/repositories/data_iuran_repository.dart';
+import 'package:wargaja/widgets/menu_card.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/repositories/data_iuran_repository.dart';
 
 class QuickActionsGrid extends StatelessWidget {
   const QuickActionsGrid({super.key});

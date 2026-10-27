@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/secretary/widgets/incoming_mail/mail_item.dart';
-import 'package:rukunin/pages/secretary/widgets/incoming_mail/empty_mail.dart';
+import 'package:wargaja/pages/secretary/widgets/incoming_mail/mail_item.dart';
+import 'package:wargaja/pages/secretary/widgets/incoming_mail/empty_mail.dart';
 
 class IncomingMailScreen extends StatelessWidget {
   const IncomingMailScreen({super.key});

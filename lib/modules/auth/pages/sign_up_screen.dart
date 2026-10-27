@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rukunin/modules/auth/models/form_data.dart' show SignUpFormData;
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/utils/error_handler/firebase_error_handler.dart';
-import 'package:rukunin/widgets/buttons/social_sign_button.dart';
+import 'package:wargaja/modules/auth/models/form_data.dart' show SignUpFormData;
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/utils/error_handler/firebase_error_handler.dart';
+import 'package:wargaja/widgets/buttons/social_sign_button.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
-import 'package:rukunin/widgets/language_switcher.dart';
-import 'package:rukunin/modules/auth/services/auth_service.dart';
-import 'package:rukunin/modules/auth/services/form_validator.dart';
-import 'package:rukunin/modules/auth/widgets/auth_header.dart';
-import 'package:rukunin/modules/auth/widgets/auth_text_field.dart';
-import 'package:rukunin/modules/auth/widgets/password_requirements.dart';
-import 'package:rukunin/modules/auth/widgets/terms_and_privacy.dart';
+import 'package:wargaja/widgets/loading_indicator.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
+import 'package:wargaja/widgets/language_switcher.dart';
+import 'package:wargaja/modules/auth/services/auth_service.dart';
+import 'package:wargaja/modules/auth/services/form_validator.dart';
+import 'package:wargaja/modules/auth/widgets/auth_header.dart';
+import 'package:wargaja/modules/auth/widgets/auth_text_field.dart';
+import 'package:wargaja/modules/auth/widgets/password_requirements.dart';
+import 'package:wargaja/modules/auth/widgets/terms_and_privacy.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

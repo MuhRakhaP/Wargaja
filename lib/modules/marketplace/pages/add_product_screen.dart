@@ -4,12 +4,12 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rukunin/modules/marketplace/models/product.dart';
-import 'package:rukunin/modules/marketplace/models/shop.dart';
-import 'package:rukunin/modules/marketplace/services/product_service.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
+import 'package:wargaja/modules/marketplace/models/product.dart';
+import 'package:wargaja/modules/marketplace/models/shop.dart';
+import 'package:wargaja/modules/marketplace/services/product_service.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/loading_indicator.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
 
 class AddProductScreen extends StatefulWidget {
   final Shop shop;

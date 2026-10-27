@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/pages/rt/reports/models/report_item.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/pages/rt/reports/models/report_item.dart';
 
 typedef StatusCallback = void Function(ReportItem item, String status);
 typedef NoteCallback = void Function(ReportItem item);

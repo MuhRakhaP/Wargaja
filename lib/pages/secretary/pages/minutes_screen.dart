@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 // Import dari widgets/notulensi/
-import 'package:rukunin/pages/secretary/widgets/notulensi/minutes_model.dart';
-import 'package:rukunin/pages/secretary/widgets/notulensi/minutes_list_widget.dart';
-import 'package:rukunin/pages/secretary/widgets/notulensi/empty_minutes.dart';
-import 'package:rukunin/pages/secretary/widgets/notulensi/create_minutes_screen.dart';
-import 'package:rukunin/pages/secretary/widgets/notulensi/edit_minutes_screen.dart';
-import 'package:rukunin/pages/secretary/widgets/notulensi/minutes_detail_page.dart';
+import 'package:wargaja/pages/secretary/widgets/notulensi/minutes_model.dart';
+import 'package:wargaja/pages/secretary/widgets/notulensi/minutes_list_widget.dart';
+import 'package:wargaja/pages/secretary/widgets/notulensi/empty_minutes.dart';
+import 'package:wargaja/pages/secretary/widgets/notulensi/create_minutes_screen.dart';
+import 'package:wargaja/pages/secretary/widgets/notulensi/edit_minutes_screen.dart';
+import 'package:wargaja/pages/secretary/widgets/notulensi/minutes_detail_page.dart';
 
 class MinutesScreen extends StatefulWidget {
   const MinutesScreen({super.key});

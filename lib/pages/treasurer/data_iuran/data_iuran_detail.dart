@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/input_decorations.dart';
-import 'package:rukunin/modules/community/models/dues_payment.dart';
-import 'package:rukunin/modules/community/services/dues_service.dart';
-import 'package:rukunin/pages/treasurer/data_iuran/widgets/iuran_info_card.dart';
-import 'package:rukunin/pages/treasurer/data_iuran/widgets/bukti_pembayaran_card.dart';
-import 'package:rukunin/pages/general/ml_inference_test/services/ml_firebase_service.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/input_decorations.dart';
+import 'package:wargaja/modules/community/models/dues_payment.dart';
+import 'package:wargaja/modules/community/services/dues_service.dart';
+import 'package:wargaja/pages/treasurer/data_iuran/widgets/iuran_info_card.dart';
+import 'package:wargaja/pages/treasurer/data_iuran/widgets/bukti_pembayaran_card.dart';
+import 'package:wargaja/pages/general/ml_inference_test/services/ml_firebase_service.dart';
 import 'package:http/http.dart' as http;
 
 class DataIuranDetail extends StatefulWidget {

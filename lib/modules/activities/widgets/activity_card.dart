@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
-import 'package:rukunin/modules/activities/models/activity.dart';
-import 'package:rukunin/modules/activities/pages/activity_detail_screen.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/utils/icon_mapper.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
+import 'package:wargaja/modules/activities/models/activity.dart';
+import 'package:wargaja/modules/activities/pages/activity_detail_screen.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/utils/icon_mapper.dart';
 
 class ActivityCard extends StatelessWidget {
   final Activity? event;

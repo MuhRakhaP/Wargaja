@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/models/resident.dart';
-import 'package:rukunin/pages/rt/warga/widgets/family_status_editor.dart';
-import 'package:rukunin/pages/rt/warga/widgets/info_row.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/models/resident.dart';
+import 'package:wargaja/pages/rt/warga/widgets/family_status_editor.dart';
+import 'package:wargaja/pages/rt/warga/widgets/info_row.dart';
 
 class KkSummaryCard extends StatelessWidget {
   final String kkNumber;

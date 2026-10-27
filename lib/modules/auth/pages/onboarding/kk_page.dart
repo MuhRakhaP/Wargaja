@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/modules/auth/state/onboarding_state.dart';
-import 'package:rukunin/widgets/custom_text_field.dart';
-import 'package:rukunin/widgets/custom_dropdown.dart';
-import 'package:rukunin/repositories/options.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/modules/auth/state/onboarding_state.dart';
+import 'package:wargaja/widgets/custom_text_field.dart';
+import 'package:wargaja/widgets/custom_dropdown.dart';
+import 'package:wargaja/repositories/options.dart';
+import 'package:wargaja/theme/app_colors.dart';
 
 class KKPage extends StatefulWidget {
   final OnboardingState state;

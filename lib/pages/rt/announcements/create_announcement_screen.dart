@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/models/announcementRT.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/input_decorations.dart';
+import 'package:wargaja/models/announcementRT.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/input_decorations.dart';
 
 class CreateAnnouncementScreen extends StatefulWidget {
   const CreateAnnouncementScreen({super.key});

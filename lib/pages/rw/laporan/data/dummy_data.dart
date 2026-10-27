@@ -1,6 +1,6 @@
 // lib/laporan/data/dummy_data.dart
-import 'package:rukunin/pages/rw/laporan/models/rt_report.dart';
-import 'package:rukunin/pages/rw/laporan/models/rw_report.dart';
+import 'package:wargaja/pages/rw/laporan/models/rt_report.dart';
+import 'package:wargaja/pages/rw/laporan/models/rw_report.dart';
 
 class DummyData {
   static final List<RTReport> rtReports = [

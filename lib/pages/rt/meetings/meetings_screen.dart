@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/pages/rt/meetings/models/meeting.dart';
-import 'package:rukunin/repositories/meeting_repository.dart';
-import 'package:rukunin/pages/rt/meetings/widgets/meeting_card.dart';
-import 'package:rukunin/pages/rt/meetings/meeting_detail_screen.dart';
-import 'package:rukunin/pages/rt/meetings/create_meeting_screen.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/pages/rt/meetings/models/meeting.dart';
+import 'package:wargaja/repositories/meeting_repository.dart';
+import 'package:wargaja/pages/rt/meetings/widgets/meeting_card.dart';
+import 'package:wargaja/pages/rt/meetings/meeting_detail_screen.dart';
+import 'package:wargaja/pages/rt/meetings/create_meeting_screen.dart';
 
 class MeetingsScreen extends StatefulWidget {
   const MeetingsScreen({super.key});

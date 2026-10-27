@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart' hide Order;
-import 'package:rukunin/modules/marketplace/models/order.dart';
-import 'package:rukunin/modules/marketplace/models/product.dart';
+import 'package:wargaja/modules/marketplace/models/order.dart';
+import 'package:wargaja/modules/marketplace/models/product.dart';
 
 class OrderService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

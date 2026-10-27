@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/custom_dropdown.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/custom_dropdown.dart';
 
 class HomeDetailsScreen extends StatefulWidget {
   const HomeDetailsScreen({super.key});
