@@ -41,7 +41,7 @@ jobs:
           flutter pub run flutter_native_splash:create
       
       - name: Build APK (Debug)
-        run: echo "Skipping debug build - testing release only"
+        run: flutter build apk --debug
         
       - name: Build APK (Release)
         run: flutter build apk --release
