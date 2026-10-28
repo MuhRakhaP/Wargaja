@@ -28,7 +28,7 @@ class NotificationService {
     );
 
     await _notifications.initialize(
-      initSettings,
+      settings: initSettings,
       onDidReceiveNotificationResponse: _onNotificationTapped,
     );
 
@@ -123,22 +123,20 @@ class NotificationService {
     );
 
     await _notifications.zonedSchedule(
-      id,
-      title,
-      body,
-      tzScheduledDate,
-      notificationDetails,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
+      id: id,
+      title: title,
+      body: body,
+      scheduledDate: tzScheduledDate,
+      notificationDetails: notificationDetails,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
     );
   }
 
   Future<void> cancelEventReminders(String eventId) async {
     // Cancel all 3 notifications for this event
-    await _notifications.cancel(_generateNotificationId(eventId, 1));
-    await _notifications.cancel(_generateNotificationId(eventId, 2));
-    await _notifications.cancel(_generateNotificationId(eventId, 3));
+    await _notifications.cancel(id: _generateNotificationId(eventId, 1));
+    await _notifications.cancel(id: _generateNotificationId(eventId, 2));
+    await _notifications.cancel(id: _generateNotificationId(eventId, 3));
   }
 
   int _generateNotificationId(String eventId, int reminderType) {
