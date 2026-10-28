@@ -8,6 +8,7 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// CI tooling upgrade for Gradle 9.3.1, AGP 9.1.1, Kotlin 2.3.20, compileSdk 37
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 android {
