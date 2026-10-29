@@ -1,6 +1,9 @@
 # Firebase
 .firebase/
 
+# Local secrets (never commit)
+opencode.json.bak
+
 # Miscellaneous
 *.class
 *.log
