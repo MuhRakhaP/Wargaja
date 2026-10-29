@@ -19,6 +19,46 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// Some plugin modules still declare a low `compileSdk` (34) in their Groovy
+// build scripts. With this toolchain those modules end up compiled without the
+// Android boot classpath, failing with "package android.os does not exist".
+// Pin every plugin module to the app's compileSdk before AGP finalises it.
+// This `afterEvaluate` is registered during root evaluation, so it runs before
+// the Android plugin's own `afterEvaluate`.
+subprojects {
+    if (name == "app") return@subprojects
+    afterEvaluate {
+        val androidExtension = extensions.findByName("android") ?: return@afterEvaluate
+        try {
+            androidExtension.withGroovyBuilder {
+                try {
+                    setProperty("compileSdk", 36)
+                } catch (missingProperty: Exception) {
+                    invokeMethod("compileSdkVersion", 36)
+                }
+            }
+        } catch (e: Exception) {
+            logger.lifecycle("Could not pin compileSdk for :$name (${e.message})")
+        }
+    }
+}
+
+// TEMP DIAGNOSTICS
+gradle.projectsEvaluated {
+    subprojects.forEach { sp ->
+        val androidExtension = sp.extensions.findByName("android")
+        val compileSdkValue: Any? = try {
+            androidExtension?.withGroovyBuilder { getProperty("compileSdk") }
+        } catch (e: Exception) {
+            "n/a"
+        }
+        val javac = sp.tasks.findByName("compileDebugJavaWithJavac") as? JavaCompile
+        val bootClasspath = javac?.options?.bootstrapClasspath?.files?.joinToString(",") { it.name } ?: "none"
+        val classpathCount = javac?.classpath?.files?.size ?: -1
+        println("DIAG :$sp.name compileSdk=$compileSdkValue bootClasspath=$bootClasspath classpathCount=$classpathCount")
+    }
+}
+
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
