@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:rukunin/services/ml/hog_extractor.dart';
+import 'package:wargaja/services/ml/hog_extractor.dart';
 
 /// Runs HOG in an isolate.
 /// Input: Float32List (64x64 grayscale)

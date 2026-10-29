@@ -1,15 +1,15 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/theme/app_colors.dart';
 import 'package:open_file/open_file.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:rukunin/modules/community/models/transaction_model.dart';
-import 'package:rukunin/modules/community/models/financial_summary_model.dart';
-import 'package:rukunin/modules/community/services/report_generator_service.dart';
-import 'package:rukunin/modules/community/widgets/components/financial_summary_card.dart';
-import 'package:rukunin/modules/community/widgets/components/transaction_card.dart';
+import 'package:wargaja/modules/community/models/transaction_model.dart';
+import 'package:wargaja/modules/community/models/financial_summary_model.dart';
+import 'package:wargaja/modules/community/services/report_generator_service.dart';
+import 'package:wargaja/modules/community/widgets/components/financial_summary_card.dart';
+import 'package:wargaja/modules/community/widgets/components/transaction_card.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:rukunin/utils/formatter/currency_formatter.dart';
+import 'package:wargaja/utils/formatter/currency_formatter.dart';
 
 class FinanceTransparencySection extends StatefulWidget {
   const FinanceTransparencySection({super.key});

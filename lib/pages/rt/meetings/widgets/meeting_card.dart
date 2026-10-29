@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:rukunin/pages/rt/meetings/models/meeting.dart';
-import 'package:rukunin/repositories/meeting_repository.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/pages/rt/meetings/models/meeting.dart';
+import 'package:wargaja/repositories/meeting_repository.dart';
+import 'package:wargaja/theme/app_colors.dart';
 
 class MeetingCard extends StatelessWidget {
   final Meeting meeting;

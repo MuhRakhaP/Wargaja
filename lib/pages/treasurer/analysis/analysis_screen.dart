@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 // theme/colors used inside extracted widgets
-import 'package:rukunin/pages/rt/report_statistic/components/sparkline_painter.dart';
-import 'package:rukunin/pages/rt/report_statistic/components/mini_charts.dart';
-import 'package:rukunin/pages/rt/report_statistic/components/filters_row.dart';
-import 'package:rukunin/pages/treasurer/analysis/widgets/analysis_widgets.dart';
+import 'package:wargaja/pages/rt/report_statistic/components/sparkline_painter.dart';
+import 'package:wargaja/pages/rt/report_statistic/components/mini_charts.dart';
+import 'package:wargaja/pages/rt/report_statistic/components/filters_row.dart';
+import 'package:wargaja/pages/treasurer/analysis/widgets/analysis_widgets.dart';
 
 class TreasurerAnalysisScreen extends StatefulWidget {
   const TreasurerAnalysisScreen({super.key});

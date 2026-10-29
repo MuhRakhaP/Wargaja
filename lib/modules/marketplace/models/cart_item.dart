@@ -1,4 +1,4 @@
-import 'package:rukunin/modules/marketplace/models/product.dart';
+import 'package:wargaja/modules/marketplace/models/product.dart';
 
 class CartItem {
   final String id;

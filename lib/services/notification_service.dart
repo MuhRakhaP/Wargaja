@@ -1,7 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
-import 'package:rukunin/modules/activities/models/activity.dart';
+import 'package:wargaja/modules/activities/models/activity.dart';
 
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();

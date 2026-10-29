@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/repositories/category_repository.dart';
-import 'package:rukunin/models/category.dart';
-import 'package:rukunin/pages/treasurer/kategori/kategori_form_screen.dart';
-import 'package:rukunin/pages/rt/wilayah/widgets/confirm_dialogs.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/repositories/category_repository.dart';
+import 'package:wargaja/models/category.dart';
+import 'package:wargaja/pages/treasurer/kategori/kategori_form_screen.dart';
+import 'package:wargaja/pages/rt/wilayah/widgets/confirm_dialogs.dart';
 
 class KategoriScreen extends StatefulWidget {
   const KategoriScreen({super.key});

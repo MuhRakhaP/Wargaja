@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/models/street.dart';
-import 'package:rukunin/pages/rt/wilayah/widgets/street_simple_card.dart';
+import 'package:wargaja/models/street.dart';
+import 'package:wargaja/pages/rt/wilayah/widgets/street_simple_card.dart';
 
 typedef OnDeleteStreet = Future<bool> Function(int index);
 

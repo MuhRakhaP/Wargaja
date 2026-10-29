@@ -9,13 +9,13 @@ class AppLocalizationsId extends AppLocalizations {
   AppLocalizationsId([String locale = 'id']) : super(locale);
 
   @override
-  String get appTitle => 'Rukunin';
+  String get appTitle => 'Wargaja';
 
   @override
   String get hello => 'Halo';
 
   @override
-  String get welcome => 'Selamat datang di Rukunin';
+  String get welcome => 'Selamat datang di Wargaja';
 
   @override
   String get home => 'Rumah';
@@ -147,7 +147,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get signUpSubtitle =>
-      'Buat akun baru untuk menggunakan\naplikasi Rukunin';
+      'Buat akun baru untuk menggunakan\naplikasi Wargaja';
 
   @override
   String get fullName => 'Nama lengkap';
@@ -248,7 +248,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get welcomeToRukunin => 'Selamat Datang di Rukunin!';
+  String get welcomeToRukunin => 'Selamat Datang di Wargaja!';
 
   @override
   String get onboardingWelcomeDesc =>

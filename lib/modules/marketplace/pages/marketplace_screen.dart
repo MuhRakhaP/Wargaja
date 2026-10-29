@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/modules/marketplace/models/product.dart';
-import 'package:rukunin/modules/marketplace/widgets/my_shop_banner.dart';
-import 'package:rukunin/modules/marketplace/widgets/promo_banner_carousel.dart';
-import 'package:rukunin/modules/marketplace/services/product_service.dart';
-import 'package:rukunin/widgets/cards/category_chip.dart';
-import 'package:rukunin/modules/marketplace/widgets/product_card.dart';
-import 'package:rukunin/modules/marketplace/widgets/search_bar_market.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
+import 'package:wargaja/modules/marketplace/models/product.dart';
+import 'package:wargaja/modules/marketplace/widgets/my_shop_banner.dart';
+import 'package:wargaja/modules/marketplace/widgets/promo_banner_carousel.dart';
+import 'package:wargaja/modules/marketplace/services/product_service.dart';
+import 'package:wargaja/widgets/cards/category_chip.dart';
+import 'package:wargaja/modules/marketplace/widgets/product_card.dart';
+import 'package:wargaja/modules/marketplace/widgets/search_bar_market.dart';
+import 'package:wargaja/widgets/loading_indicator.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
 
 class MarketplaceScreen extends StatefulWidget {
   const MarketplaceScreen({super.key});

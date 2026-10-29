@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/kegiatan/data/dummy_kegiatan.dart';
+import 'package:wargaja/pages/rw/kegiatan/data/dummy_kegiatan.dart';
 
 class KegiatanStatCards extends StatelessWidget {
   const KegiatanStatCards({super.key});

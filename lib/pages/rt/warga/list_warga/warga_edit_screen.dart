@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/models/resident.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/input_decorations.dart';
-import 'package:rukunin/pages/rt/warga/widgets/doc_tile.dart';
-import 'package:rukunin/models/street.dart';
-import 'package:rukunin/repositories/streets.dart' as streetRepo;
-import 'package:rukunin/pages/rt/warga/widgets/warga_common_fields.dart';
-import 'package:rukunin/pages/rt/warga/widgets/form_actions.dart';
+import 'package:wargaja/models/resident.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/input_decorations.dart';
+import 'package:wargaja/pages/rt/warga/widgets/doc_tile.dart';
+import 'package:wargaja/models/street.dart';
+import 'package:wargaja/repositories/streets.dart' as streetRepo;
+import 'package:wargaja/pages/rt/warga/widgets/warga_common_fields.dart';
+import 'package:wargaja/pages/rt/warga/widgets/form_actions.dart';
 
 class WargaEditScreen extends StatefulWidget {
   final Warga warga;

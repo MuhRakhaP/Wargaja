@@ -22,7 +22,7 @@
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
-        android:label="Rukunin"
+        android:label="Wargaja"
         android:name="${applicationName}"
         android:icon="@mipmap/app_icon"
         android:requestLegacyExternalStorage="true">

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rukunin/modules/community/services/dues_service.dart';
-import 'package:rukunin/modules/community/widgets/dues_summary_card.dart';
-import 'package:rukunin/modules/community/widgets/communnity_summary_section.dart';
-import 'package:rukunin/modules/community/widgets/payment_history_section.dart';
-import 'package:rukunin/widgets/rukunin_app_bar.dart';
+import 'package:wargaja/modules/community/services/dues_service.dart';
+import 'package:wargaja/modules/community/widgets/dues_summary_card.dart';
+import 'package:wargaja/modules/community/widgets/communnity_summary_section.dart';
+import 'package:wargaja/modules/community/widgets/payment_history_section.dart';
+import 'package:wargaja/widgets/rukunin_app_bar.dart';
 
 class DuesScreen extends StatefulWidget {
   const DuesScreen({super.key});

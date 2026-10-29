@@ -1,4 +1,4 @@
-import 'package:rukunin/models/announcementRT.dart';
+import 'package:wargaja/models/announcementRT.dart';
 
 final List<Announcement> announcements = [
   Announcement(

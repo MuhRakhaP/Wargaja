@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/modules/community/models/transaction_model.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/modules/community/models/transaction_model.dart';
 
 class TransactionCard extends StatelessWidget {
   final TransactionModel transaction;

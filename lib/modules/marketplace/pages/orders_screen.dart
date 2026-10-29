@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
-import 'package:rukunin/modules/marketplace/models/order.dart';
-import 'package:rukunin/modules/marketplace/models/shop.dart';
-import 'package:rukunin/modules/marketplace/services/order_service.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
+import 'package:wargaja/modules/marketplace/models/order.dart';
+import 'package:wargaja/modules/marketplace/models/shop.dart';
+import 'package:wargaja/modules/marketplace/services/order_service.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/loading_indicator.dart';
 
 class OrdersScreen extends StatefulWidget {
   final Shop shop;

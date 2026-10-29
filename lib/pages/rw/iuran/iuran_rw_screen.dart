@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/iuran/models/status_iuran.dart';
-import 'package:rukunin/pages/rw/iuran/widgets/iuran_header.dart';
-import 'package:rukunin/pages/rw/iuran/widgets/iuran_card.dart';
-import 'package:rukunin/pages/rw/iuran/widgets/iuran_section.dart';
+import 'package:wargaja/pages/rw/iuran/models/status_iuran.dart';
+import 'package:wargaja/pages/rw/iuran/widgets/iuran_header.dart';
+import 'package:wargaja/pages/rw/iuran/widgets/iuran_card.dart';
+import 'package:wargaja/pages/rw/iuran/widgets/iuran_section.dart';
 
 class IuranRwScreen extends StatefulWidget {
   const IuranRwScreen({super.key});

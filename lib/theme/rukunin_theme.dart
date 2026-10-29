@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/theme/app_colors.dart';
 
 final rukuninTheme = ThemeData(
   primaryColor: AppColors.primary,
-  primarySwatch: Colors.yellow,
   useMaterial3: true,
-  scaffoldBackgroundColor: Colors.grey[50],
+  scaffoldBackgroundColor: AppColors.background,
+  colorScheme: ColorScheme.light(
+    primary: AppColors.primary,
+    onPrimary: Colors.white,
+    primaryContainer: AppColors.primaryLight,
+    secondary: AppColors.primary,
+    surface: AppColors.surface,
+    error: AppColors.error,
+  ),
 
   // AppBar Theme
   appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.white,
+    backgroundColor: AppColors.surface,
     elevation: 0,
     centerTitle: true,
     iconTheme: IconThemeData(color: AppColors.textPrimary),
@@ -22,7 +29,7 @@ final rukuninTheme = ThemeData(
 
   // Card Theme
   cardTheme: CardThemeData(
-    color: Colors.white,
+    color: AppColors.surface,
     elevation: 0,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(16),
@@ -66,7 +73,7 @@ final rukuninTheme = ThemeData(
   // Input Decoration Theme
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: Colors.white,
+    fillColor: AppColors.surface,
     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
@@ -195,7 +202,7 @@ final rukuninTheme = ThemeData(
 
   // Dialog Theme
   dialogTheme: DialogThemeData(
-    backgroundColor: Colors.white,
+    backgroundColor: AppColors.surface,
     elevation: 8,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     titleTextStyle: const TextStyle(
@@ -207,7 +214,7 @@ final rukuninTheme = ThemeData(
 
   // Bottom Sheet Theme
   bottomSheetTheme: const BottomSheetThemeData(
-    backgroundColor: Colors.white,
+    backgroundColor: AppColors.surface,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
@@ -215,7 +222,7 @@ final rukuninTheme = ThemeData(
 
   // Date Picker Theme
   datePickerTheme: DatePickerThemeData(
-    backgroundColor: Colors.white,
+    backgroundColor: AppColors.surface,
     headerBackgroundColor: AppColors.primary,
     headerForegroundColor: Colors.white,
     dayForegroundColor: WidgetStateProperty.all(AppColors.textPrimary),
@@ -228,7 +235,7 @@ final rukuninTheme = ThemeData(
   listTileTheme: ListTileThemeData(
     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-    tileColor: Colors.white,
+    tileColor: AppColors.surface,
     selectedTileColor: AppColors.primary.withOpacity(0.1),
     iconColor: AppColors.textPrimary,
     textColor: AppColors.textPrimary,

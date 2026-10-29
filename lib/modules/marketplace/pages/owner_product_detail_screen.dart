@@ -3,11 +3,11 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
-import 'package:rukunin/modules/marketplace/models/product.dart';
-import 'package:rukunin/modules/marketplace/services/product_service.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/utils/formatter/currency_formatter.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
+import 'package:wargaja/modules/marketplace/models/product.dart';
+import 'package:wargaja/modules/marketplace/services/product_service.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/utils/formatter/currency_formatter.dart';
 
 class OwnerProductDetailScreen extends StatefulWidget {
   final Product product;

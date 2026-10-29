@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/models/street.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/input_decorations.dart';
+import 'package:wargaja/models/street.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/input_decorations.dart';
 
 class WilayahAddScreen extends StatefulWidget {
   const WilayahAddScreen({super.key});

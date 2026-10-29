@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/models/street.dart';
+import 'package:wargaja/models/street.dart';
 
 final List<Street> streets = [
   Street(

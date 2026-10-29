@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
-import 'package:rukunin/modules/activities/models/activity.dart';
-import 'package:rukunin/modules/activities/widgets/activity_card.dart';
-import 'package:rukunin/modules/activities/services/activity_service.dart';
-import 'package:rukunin/modules/activities/services/activity_widget_service.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/utils/formatter/date_formatter.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
-import 'package:rukunin/widgets/rukunin_app_bar.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
+import 'package:wargaja/modules/activities/models/activity.dart';
+import 'package:wargaja/modules/activities/widgets/activity_card.dart';
+import 'package:wargaja/modules/activities/services/activity_service.dart';
+import 'package:wargaja/modules/activities/services/activity_widget_service.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/utils/formatter/date_formatter.dart';
+import 'package:wargaja/widgets/loading_indicator.dart';
+import 'package:wargaja/widgets/rukunin_app_bar.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class ActivityScreen extends StatefulWidget {

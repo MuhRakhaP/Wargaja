@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:rukunin/pages/rt/meetings/models/meeting.dart';
-import 'package:rukunin/repositories/meeting_repository.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
-import 'package:rukunin/modules/activities/widgets/small_activity_detail_card.dart';
-import 'package:rukunin/modules/activities/widgets/activity_organizer_card.dart';
+import 'package:wargaja/pages/rt/meetings/models/meeting.dart';
+import 'package:wargaja/repositories/meeting_repository.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/loading_indicator.dart';
+import 'package:wargaja/modules/activities/widgets/small_activity_detail_card.dart';
+import 'package:wargaja/modules/activities/widgets/activity_organizer_card.dart';
 
 class MeetingDetailScreen extends StatefulWidget {
   final Meeting meeting;

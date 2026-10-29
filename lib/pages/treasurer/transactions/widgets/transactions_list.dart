@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/repositories/transactions_repository.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/pages/treasurer/transactions/widgets/transaction_item.dart';
+import 'package:wargaja/repositories/transactions_repository.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/pages/treasurer/transactions/widgets/transaction_item.dart';
 
 class TransactionsList extends StatelessWidget {
   final String? kind;

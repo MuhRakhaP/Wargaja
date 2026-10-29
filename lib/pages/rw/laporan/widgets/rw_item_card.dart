@@ -1,6 +1,6 @@
 // lib/laporan/widgets/rw_item_card.dart
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/laporan/models/rw_report.dart';
+import 'package:wargaja/pages/rw/laporan/models/rw_report.dart';
 
 class RWItemCard extends StatelessWidget {
   final RWReport report;

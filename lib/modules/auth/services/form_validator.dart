@@ -1,4 +1,4 @@
-import 'package:rukunin/l10n/app_localizations.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
 
 class FormValidator {
   final AppLocalizations l10n;

@@ -2,8 +2,8 @@ import 'dart:math';
 import 'dart:ui' as ui;
 import 'dart:ui';
 import 'package:flutter/services.dart';
-import 'package:rukunin/types/image_matrix.dart';
-import 'package:rukunin/utils/image_processing/image_utils_pure.dart';
+import 'package:wargaja/types/image_matrix.dart';
+import 'package:wargaja/utils/image_processing/image_utils_pure.dart';
 
 class ImageUtilsUi {
   static Future<Uint8List> loadAssetImage(String path) async {

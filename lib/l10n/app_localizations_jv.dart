@@ -9,13 +9,13 @@ class AppLocalizationsJv extends AppLocalizations {
   AppLocalizationsJv([String locale = 'jv']) : super(locale);
 
   @override
-  String get appTitle => 'Rukunin';
+  String get appTitle => 'Wargaja';
 
   @override
   String get hello => 'Halo';
 
   @override
-  String get welcome => 'Sugeng rawuh ing Rukunin';
+  String get welcome => 'Sugeng rawuh ing Wargaja';
 
   @override
   String get home => 'Omah';
@@ -147,7 +147,7 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String get signUpSubtitle =>
-      'Gawe akun anyar kanggo nganggo\naplikasi Rukunin';
+      'Gawe akun anyar kanggo nganggo\naplikasi Wargaja';
 
   @override
   String get fullName => 'Jeneng lengkap';
@@ -248,7 +248,7 @@ class AppLocalizationsJv extends AppLocalizations {
   }
 
   @override
-  String get welcomeToRukunin => 'Sugeng Rawuh ing Rukunin!';
+  String get welcomeToRukunin => 'Sugeng Rawuh ing Wargaja!';
 
   @override
   String get onboardingWelcomeDesc =>

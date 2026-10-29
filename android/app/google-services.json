@@ -1,51 +1,26 @@
 {
   "project_info": {
-    "project_number": "1029176612701",
-    "project_id": "rukunin-app",
-    "storage_bucket": "rukunin-app.firebasestorage.app"
+    "project_number": "367672341804",
+    "project_id": "wargaja-91e14",
+    "storage_bucket": "wargaja-91e14.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1029176612701:android:57d0d935ee0d3e171fbab4",
+        "mobilesdk_app_id": "1:367672341804:android:541cebc29108d20d942889",
         "android_client_info": {
-          "package_name": "com.squadronteam.rukunin"
+          "package_name": "com.wargaja.app"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "1029176612701-r2ate17p9fhpdj2iqh3ed4barpj7k45f.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.squadronteam.rukunin",
-            "certificate_hash": "df6f3318733ffe524968b05a15b66a5dd200bac9"
-          }
-        },
-        {
-          "client_id": "1029176612701-cspqbc8ljjhp06ldqrnel8ubtfrfjdj4.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAsylITH2BwLK5OBnh3NystqMSX2YSDmH4"
+          "current_key": "AIzaSyAEM6XRvWoslo7C3ix6D5uZvjyobJGkYdg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1029176612701-cspqbc8ljjhp06ldqrnel8ubtfrfjdj4.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1029176612701-c1q1ltvrtsortluhivgitb53a5suhic5.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.squadronteam.rukunin"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

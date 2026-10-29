@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/models/menu_item.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/models/menu_item.dart';
 
 class MenuTabsSection extends StatefulWidget {
   final String sectionTitle;

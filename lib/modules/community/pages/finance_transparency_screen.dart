@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/modules/community/widgets/finance_transparency_section.dart';
-import 'package:rukunin/widgets/rukunin_app_bar.dart';
+import 'package:wargaja/modules/community/widgets/finance_transparency_section.dart';
+import 'package:wargaja/widgets/rukunin_app_bar.dart';
 
 class FinanceTransparencyScreen extends StatelessWidget {
   const FinanceTransparencyScreen({super.key});

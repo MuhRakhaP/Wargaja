@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
+import 'package:wargaja/widgets/loading_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:rukunin/pages/general/guide_screen_stub.dart'
+import 'package:wargaja/pages/general/guide_screen_stub.dart'
     if (dart.library.html) 'guide_screen_web.dart';
 
 class GuideScreen extends StatefulWidget {

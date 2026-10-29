@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/repositories/document_requests_repository.dart';
-import 'package:rukunin/pages/rt/surat_form_warga/models/document_request.dart';
-import 'package:rukunin/pages/rt/surat_form_warga/widgets/document_request_card.dart';
-import 'package:rukunin/pages/rt/surat_form_warga/request_detail_page.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/repositories/document_requests_repository.dart';
+import 'package:wargaja/pages/rt/surat_form_warga/models/document_request.dart';
+import 'package:wargaja/pages/rt/surat_form_warga/widgets/document_request_card.dart';
+import 'package:wargaja/pages/rt/surat_form_warga/request_detail_page.dart';
+import 'package:wargaja/theme/app_colors.dart';
 
 class CategoryRequestsScreen extends StatefulWidget {
   final String typeKey;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/pages/rt/report_statistic/components/mini_charts.dart';
-import 'package:rukunin/pages/rt/report_statistic/components/donut_chart.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/pages/rt/report_statistic/components/mini_charts.dart';
+import 'package:wargaja/pages/rt/report_statistic/components/donut_chart.dart';
 
 // Reusable RT filter widget (lifted from screen)
 class RtFilter extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/models/carousel_item.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/models/carousel_item.dart';
 
 class CommunityCarousel extends StatefulWidget {
   final List<CarouselItem> items;

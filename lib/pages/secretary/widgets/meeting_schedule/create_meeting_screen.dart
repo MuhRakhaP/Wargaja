@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/secretary/widgets/meeting_schedule/meeting_model.dart';
+import 'package:wargaja/pages/secretary/widgets/meeting_schedule/meeting_model.dart';
 
 class CreateMeetingScreen extends StatefulWidget {
   const CreateMeetingScreen({super.key});

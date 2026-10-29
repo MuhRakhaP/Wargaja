@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/models/app_notification.dart';
+import 'package:wargaja/models/app_notification.dart';
 
 final List<AppNotification> appNotifications = [
   AppNotification(

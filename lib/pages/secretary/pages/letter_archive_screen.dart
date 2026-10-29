@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/secretary/widgets/letter_archive/archive_item.dart';
-import 'package:rukunin/pages/secretary/widgets/letter_archive/empty_archive.dart';
+import 'package:wargaja/pages/secretary/widgets/letter_archive/archive_item.dart';
+import 'package:wargaja/pages/secretary/widgets/letter_archive/empty_archive.dart';
 
 class LetterArchiveScreen extends StatefulWidget {
   const LetterArchiveScreen({super.key});

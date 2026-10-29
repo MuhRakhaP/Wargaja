@@ -1,5 +1,5 @@
-name: rukunin
-description: "A community management app designed for Indonesia's RT/RW system, helping residents and local leaders manage administration, finances, events, and daily neighborhood tasks."
+name: wargaja
+description: "Wargaja community management app for Indonesia's RT/RW system, helping residents and local leaders manage administration, finances, events, and daily neighborhood tasks."
 publish_to: 'none'
 version: 0.1.0+90
 
@@ -91,11 +91,11 @@ flutter_launcher_icons:
     image_path: "assets/icons/app_icon.png"
 
 flutter_native_splash:
-  color: "#FEAF0D"
+  color: "#2563EB"
   image: assets/icons/app_icon.png
   android: true
   ios: true
   web: true
   android_12:
-    color: "#FEAF0D"
+    color: "#2563EB"
     image: assets/icons/app_icon.png

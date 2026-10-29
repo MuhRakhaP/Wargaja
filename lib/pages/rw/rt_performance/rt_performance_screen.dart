@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rukunin/pages/rw/rt_performance/rt_performance_service.dart';
+import 'package:wargaja/pages/rw/rt_performance/rt_performance_service.dart';
 
 class RtPerformanceScreen extends StatefulWidget {
   const RtPerformanceScreen({super.key});

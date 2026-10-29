@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rukunin/types/image_matrix.dart';
-import 'package:rukunin/utils/image_processing/image_utils_pure.dart';
-import 'package:rukunin/utils/image_processing/image_utils_ui.dart';
-import 'package:rukunin/utils/metrics/ssim_metric.dart';
+import 'package:wargaja/types/image_matrix.dart';
+import 'package:wargaja/utils/image_processing/image_utils_pure.dart';
+import 'package:wargaja/utils/image_processing/image_utils_ui.dart';
+import 'package:wargaja/utils/metrics/ssim_metric.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

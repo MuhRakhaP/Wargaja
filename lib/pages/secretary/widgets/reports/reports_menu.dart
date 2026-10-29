@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 // IMPORT halaman asli
-import 'package:rukunin/pages/secretary/pages/incoming_mail_screen.dart';
-import 'package:rukunin/pages/secretary/pages/outgoing_mail_screen.dart';
-import 'package:rukunin/pages/secretary/pages/residents_data_screen.dart';
+import 'package:wargaja/pages/secretary/pages/incoming_mail_screen.dart';
+import 'package:wargaja/pages/secretary/pages/outgoing_mail_screen.dart';
+import 'package:wargaja/pages/secretary/pages/residents_data_screen.dart';
 
-import 'package:rukunin/pages/secretary/widgets/reports/report_card.dart';
+import 'package:wargaja/pages/secretary/widgets/reports/report_card.dart';
 
 class ReportsMenu extends StatelessWidget {
   const ReportsMenu({super.key});

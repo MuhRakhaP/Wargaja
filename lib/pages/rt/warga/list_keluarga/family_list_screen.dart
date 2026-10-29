@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/repositories/resident.dart';
-import 'package:rukunin/models/resident.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/pages/rt/warga/list_keluarga/data_keluarga_screen.dart';
-import 'package:rukunin/pages/rt/warga/widgets/search_bar.dart';
+import 'package:wargaja/repositories/resident.dart';
+import 'package:wargaja/models/resident.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/pages/rt/warga/list_keluarga/data_keluarga_screen.dart';
+import 'package:wargaja/pages/rt/warga/widgets/search_bar.dart';
 
 class FamilyListScreen extends StatefulWidget {
   const FamilyListScreen({super.key});

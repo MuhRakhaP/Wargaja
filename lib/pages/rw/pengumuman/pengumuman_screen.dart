@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/pengumuman/pengumuman_card.dart';
-import 'package:rukunin/pages/rw/pengumuman/pengumuman_detail.dart';
+import 'package:wargaja/pages/rw/pengumuman/pengumuman_card.dart';
+import 'package:wargaja/pages/rw/pengumuman/pengumuman_detail.dart';
 
 class PengumumanScreen extends StatelessWidget {
   const PengumumanScreen({super.key});

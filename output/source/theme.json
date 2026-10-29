@@ -1,0 +1,26 @@
+{
+  "name": "Wargaja Warm",
+  "colours": {
+    "accent": "FEAF0D",
+    "accentDeep": "8A5A00",
+    "ink": "2A2622",
+    "muted": "6E6660",
+    "paper": "FFFFFF"
+  },
+  "wash": { "colour": "FEAF0D", "transparency": 86 },
+  "font": "Poppins",
+  "fontFallback": "Calibri",
+  "size": {
+    "title": 40,
+    "lead": 34,
+    "body": 24,
+    "label": 22,
+    "foot": 18
+  },
+  "slide": { "w": 13.333, "h": 7.5 },
+  "margin": { "x": 0.7, "top": 0.5, "bottom": 0.55 },
+  "motif": {
+    "dot": 0.44,
+    "discLarge": 6.2
+  }
+}

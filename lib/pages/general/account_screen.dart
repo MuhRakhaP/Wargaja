@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/theme/app_colors.dart';
 import 'package:intl/intl.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
-import 'package:rukunin/widgets/profile_header.dart';
-import 'package:rukunin/widgets/form_field_with_label.dart';
-import 'package:rukunin/widgets/setting_item.dart';
-import 'package:rukunin/widgets/dialogs/logout_dialog.dart';
-import 'package:rukunin/widgets/dialogs/about_app_dialog.dart';
-import 'package:rukunin/services/account_service.dart';
-import 'package:rukunin/utils/role_helper.dart';
-import 'package:rukunin/services/biometric_auth_service.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
-import 'package:rukunin/main.dart' show localeService;
+import 'package:wargaja/widgets/loading_indicator.dart';
+import 'package:wargaja/widgets/profile_header.dart';
+import 'package:wargaja/widgets/form_field_with_label.dart';
+import 'package:wargaja/widgets/setting_item.dart';
+import 'package:wargaja/widgets/dialogs/logout_dialog.dart';
+import 'package:wargaja/widgets/dialogs/about_app_dialog.dart';
+import 'package:wargaja/services/account_service.dart';
+import 'package:wargaja/utils/role_helper.dart';
+import 'package:wargaja/services/biometric_auth_service.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
+import 'package:wargaja/main.dart' show localeService;
 import 'package:flutter/foundation.dart' show kIsWeb, debugPrint;
-import 'package:rukunin/widgets/version_text.dart';
+import 'package:wargaja/widgets/version_text.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});

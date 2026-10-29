@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'package:rukunin/modules/auth/pages/onboarding_screen.dart';
-import 'package:rukunin/modules/auth/pages/sign_in_screen.dart';
-import 'package:rukunin/modules/auth/pages/sign_up_screen.dart';
+import 'package:wargaja/modules/auth/pages/onboarding_screen.dart';
+import 'package:wargaja/modules/auth/pages/sign_in_screen.dart';
+import 'package:wargaja/modules/auth/pages/sign_up_screen.dart';
 
 final authRoutes = [
   GoRoute(

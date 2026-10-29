@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:rukunin/services/biometric_auth_service.dart';
+import 'package:wargaja/services/biometric_auth_service.dart';
 
 class BiometricLockScreen extends StatefulWidget {
   final Widget child;

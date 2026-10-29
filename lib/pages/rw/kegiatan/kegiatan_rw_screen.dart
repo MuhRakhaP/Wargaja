@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/kegiatan/models/kegiatan.dart';
-import 'package:rukunin/pages/rw/kegiatan/data/dummy_kegiatan.dart';
-import 'package:rukunin/pages/rw/kegiatan/widgets/kegiatan_header.dart';
-import 'package:rukunin/pages/rw/kegiatan/widgets/kegiatan_stat_cards.dart';
-import 'package:rukunin/pages/rw/kegiatan/widgets/kegiatan_filters.dart';
-import 'package:rukunin/pages/rw/kegiatan/widgets/kegiatan_card.dart';
-import 'package:rukunin/pages/rw/kegiatan/widgets/kegiatan_form.dart';
+import 'package:wargaja/pages/rw/kegiatan/models/kegiatan.dart';
+import 'package:wargaja/pages/rw/kegiatan/data/dummy_kegiatan.dart';
+import 'package:wargaja/pages/rw/kegiatan/widgets/kegiatan_header.dart';
+import 'package:wargaja/pages/rw/kegiatan/widgets/kegiatan_stat_cards.dart';
+import 'package:wargaja/pages/rw/kegiatan/widgets/kegiatan_filters.dart';
+import 'package:wargaja/pages/rw/kegiatan/widgets/kegiatan_card.dart';
+import 'package:wargaja/pages/rw/kegiatan/widgets/kegiatan_form.dart';
 
 class KegiatanRwScreen extends StatefulWidget {
   const KegiatanRwScreen({super.key});

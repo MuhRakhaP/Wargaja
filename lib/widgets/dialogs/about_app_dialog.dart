@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/theme/app_colors.dart';
 
 class AboutAppDialog extends StatelessWidget {
   const AboutAppDialog({super.key});
@@ -41,7 +41,7 @@ class AboutAppDialog extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Rukunin',
+              'Wargaja',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

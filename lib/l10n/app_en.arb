@@ -1,6 +1,6 @@
 {
     "@@locale": "en",
-    "appTitle": "Rukunin",
+    "appTitle": "Wargaja",
     "@appTitle": {
         "description": "The application title"
     },
@@ -8,7 +8,7 @@
     "@hello": {
         "description": "A greeting message"
     },
-    "welcome": "Welcome to Rukunin",
+    "welcome": "Welcome to Wargaja",
     "@welcome": {
         "description": "Welcome message"
     },
@@ -54,7 +54,7 @@
     "and": ", ",
     "privacyPolicy": "Privacy Policy",
     "signUp": "Sign Up",
-    "signUpSubtitle": "Create a new account to use\nthe Rukunin application",
+    "signUpSubtitle": "Create a new account to use\nthe Wargaja application",
     "fullName": "Full name",
     "confirmPassword": "Confirm password",
     "passwordRequirements": "Password must contain:",
@@ -84,7 +84,7 @@
     "resetEmailSent": "Password reset email has been sent. Check your inbox.",
     "featureNotAvailable": "{feature} not yet available",
     "errorOccurred": "An error occurred: {error}",
-    "welcomeToRukunin": "Welcome to Rukunin!",
+    "welcomeToRukunin": "Welcome to Wargaja!",
     "onboardingWelcomeDesc": "Complete your registration by filling in your identity data",
     "letsStart": "Let's Start",
     "step": "Step",

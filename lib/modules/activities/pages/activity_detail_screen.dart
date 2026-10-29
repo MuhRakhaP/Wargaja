@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rukunin/l10n/app_localizations.dart';
-import 'package:rukunin/modules/activities/models/activity.dart';
-import 'package:rukunin/modules/activities/widgets/activity_detail_screen_appbar.dart';
-import 'package:rukunin/modules/activities/widgets/activity_organizer_card.dart';
-import 'package:rukunin/modules/activities/widgets/small_activity_detail_card.dart';
-import 'package:rukunin/modules/activities/services/activity_service.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
-import 'package:rukunin/services/notification_service.dart';
+import 'package:wargaja/l10n/app_localizations.dart';
+import 'package:wargaja/modules/activities/models/activity.dart';
+import 'package:wargaja/modules/activities/widgets/activity_detail_screen_appbar.dart';
+import 'package:wargaja/modules/activities/widgets/activity_organizer_card.dart';
+import 'package:wargaja/modules/activities/widgets/small_activity_detail_card.dart';
+import 'package:wargaja/modules/activities/services/activity_service.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/loading_indicator.dart';
+import 'package:wargaja/services/notification_service.dart';
 
 class ActivityDetailScreen extends StatefulWidget {
   final Activity event;

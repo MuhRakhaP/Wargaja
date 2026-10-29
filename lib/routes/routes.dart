@@ -1,18 +1,18 @@
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rukunin/pages/general/guide_screen.dart';
-import 'package:rukunin/pages/general/ml_inference_test/ml_inference_test_screen.dart';
-import 'package:rukunin/pages/splash_screen.dart';
-import 'package:rukunin/routes/rw_routes.dart';
-import 'package:rukunin/routes/rt_routes.dart';
-import 'package:rukunin/routes/secretary_routes.dart';
-import 'package:rukunin/routes/treasurer_routes.dart';
-import 'package:rukunin/utils/role_based_navigator.dart';
-import 'package:rukunin/routes/auth_routes.dart';
-import 'package:rukunin/routes/admin_routes.dart';
-import 'package:rukunin/routes/resident_routes.dart';
+import 'package:wargaja/pages/general/guide_screen.dart';
+import 'package:wargaja/pages/general/ml_inference_test/ml_inference_test_screen.dart';
+import 'package:wargaja/pages/splash_screen.dart';
+import 'package:wargaja/routes/rw_routes.dart';
+import 'package:wargaja/routes/rt_routes.dart';
+import 'package:wargaja/routes/secretary_routes.dart';
+import 'package:wargaja/routes/treasurer_routes.dart';
+import 'package:wargaja/utils/role_based_navigator.dart';
+import 'package:wargaja/routes/auth_routes.dart';
+import 'package:wargaja/routes/admin_routes.dart';
+import 'package:wargaja/routes/resident_routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:rukunin/modules/notification/pages/notification_screen.dart';
+import 'package:wargaja/modules/notification/pages/notification_screen.dart';
 
 final router = GoRouter(
   debugLogDiagnostics: true,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/surat/models/surat_model.dart';
+import 'package:wargaja/pages/rw/surat/models/surat_model.dart';
 
 class DetailSuratScreen extends StatelessWidget {
   final Surat surat;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/models/resident.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/models/resident.dart';
+import 'package:wargaja/theme/app_colors.dart';
 
 class FamilyMemberCard extends StatelessWidget {
   final Warga member;

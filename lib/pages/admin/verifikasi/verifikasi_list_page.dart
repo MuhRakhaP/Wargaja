@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/rukunin_app_bar.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/rukunin_app_bar.dart';
 
 class VerifikasiListPage extends StatelessWidget {
   const VerifikasiListPage({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/rukunin_app_bar.dart';
-import 'package:rukunin/pages/secretary/widgets/certificate/certificate_card.dart';
-import 'package:rukunin/pages/secretary/widgets/certificate/certificate_form_screen.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/rukunin_app_bar.dart';
+import 'package:wargaja/pages/secretary/widgets/certificate/certificate_card.dart';
+import 'package:wargaja/pages/secretary/widgets/certificate/certificate_form_screen.dart';
 
 class CertificatesScreen extends StatefulWidget {
   const CertificatesScreen({super.key});

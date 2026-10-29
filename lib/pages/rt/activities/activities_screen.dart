@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/modules/activities/models/activity.dart';
-import 'package:rukunin/modules/activities/services/activity_service.dart';
-import 'package:rukunin/modules/activities/widgets/activity_card.dart';
-import 'package:rukunin/pages/rt/activities/widgets/community_activity_card.dart';
-import 'package:rukunin/pages/rt/activities/create_activity_screen.dart';
-import 'package:rukunin/pages/rt/activities/activity_detail_screen.dart';
-import 'package:rukunin/pages/rt/activities/widgets/category_chip.dart';
-import 'package:rukunin/pages/rt/activities/widgets/dismiss_background.dart';
-import 'package:rukunin/pages/rt/activities/widgets/delete_confirm_dialog.dart';
-import 'package:rukunin/theme/app_colors.dart';
+import 'package:wargaja/modules/activities/models/activity.dart';
+import 'package:wargaja/modules/activities/services/activity_service.dart';
+import 'package:wargaja/modules/activities/widgets/activity_card.dart';
+import 'package:wargaja/pages/rt/activities/widgets/community_activity_card.dart';
+import 'package:wargaja/pages/rt/activities/create_activity_screen.dart';
+import 'package:wargaja/pages/rt/activities/activity_detail_screen.dart';
+import 'package:wargaja/pages/rt/activities/widgets/category_chip.dart';
+import 'package:wargaja/pages/rt/activities/widgets/dismiss_background.dart';
+import 'package:wargaja/pages/rt/activities/widgets/delete_confirm_dialog.dart';
+import 'package:wargaja/theme/app_colors.dart';
 
 class RtActivitiesScreen extends StatefulWidget {
   const RtActivitiesScreen({super.key});

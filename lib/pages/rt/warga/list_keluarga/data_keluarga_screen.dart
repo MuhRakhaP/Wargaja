@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/repositories/resident.dart';
-import 'package:rukunin/models/resident.dart';
-import 'package:rukunin/pages/rt/warga/list_warga/warga_detail_screen.dart';
-import 'package:rukunin/pages/rt/warga/widgets/doc_preview_dialog.dart';
-import 'package:rukunin/pages/rt/warga/widgets/family_member_card.dart';
-import 'package:rukunin/pages/rt/warga/widgets/kk_summary_card.dart';
+import 'package:wargaja/repositories/resident.dart';
+import 'package:wargaja/models/resident.dart';
+import 'package:wargaja/pages/rt/warga/list_warga/warga_detail_screen.dart';
+import 'package:wargaja/pages/rt/warga/widgets/doc_preview_dialog.dart';
+import 'package:wargaja/pages/rt/warga/widgets/family_member_card.dart';
+import 'package:wargaja/pages/rt/warga/widgets/kk_summary_card.dart';
 
 class DataKeluargaScreen extends StatefulWidget {
   final List<Warga>? members;

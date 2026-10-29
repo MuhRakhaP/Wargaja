@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/treasurer/pengeluaran/pengeluaran_form.dart';
+import 'package:wargaja/pages/treasurer/pengeluaran/pengeluaran_form.dart';
 
 class PengeluaranScreen extends StatelessWidget {
   const PengeluaranScreen({super.key});

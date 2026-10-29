@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/widgets/rukunin_app_bar.dart';
-import 'package:rukunin/widgets/welcome_role_card.dart';
-import 'package:rukunin/widgets/menu_tabs_section.dart';
-import 'package:rukunin/models/menu_item.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/widgets/rukunin_app_bar.dart';
+import 'package:wargaja/widgets/welcome_role_card.dart';
+import 'package:wargaja/widgets/menu_tabs_section.dart';
+import 'package:wargaja/models/menu_item.dart';
 
 class AdminHomeScreen extends StatelessWidget {
   const AdminHomeScreen({super.key});

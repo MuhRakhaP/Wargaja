@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/repositories/announcementsRT.dart' as repo;
-import 'package:rukunin/models/announcementRT.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/pages/rt/announcements/create_announcement_screen.dart';
-import 'package:rukunin/pages/rt/announcements/announcement_detail_modal.dart';
+import 'package:wargaja/repositories/announcementsRT.dart' as repo;
+import 'package:wargaja/models/announcementRT.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/pages/rt/announcements/create_announcement_screen.dart';
+import 'package:wargaja/pages/rt/announcements/announcement_detail_modal.dart';
 
 class AnnouncementsScreen extends StatefulWidget {
   const AnnouncementsScreen({super.key});

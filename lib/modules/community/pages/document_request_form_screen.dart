@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:image_picker/image_picker.dart';
-import 'package:rukunin/theme/app_colors.dart';
-import 'package:rukunin/modules/community/services/document_service.dart';
-import 'package:rukunin/services/storage_service.dart';
-import 'package:rukunin/widgets/loading_indicator.dart';
-import 'package:rukunin/widgets/rukunin_app_bar.dart';
+import 'package:wargaja/theme/app_colors.dart';
+import 'package:wargaja/modules/community/services/document_service.dart';
+import 'package:wargaja/services/storage_service.dart';
+import 'package:wargaja/widgets/loading_indicator.dart';
+import 'package:wargaja/widgets/rukunin_app_bar.dart';
 
 class DocumentRequestFormScreen extends StatefulWidget {
   final String documentType;

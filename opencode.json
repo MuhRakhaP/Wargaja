@@ -1,0 +1,307 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "permission": {
+    "read": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "task": "allow",
+    "todowrite": "allow",
+    "webfetch": "allow",
+
+    "edit": "allow",
+
+    "bash": {
+      "*": "allow",
+      "git push*": "ask",
+      "git push --force*": "ask"
+    }
+  },
+
+  "provider": {
+    "9router": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "9Router",
+      "options": {
+        "baseURL": "https://9router.103.105.98.46.sslip.io/v1",
+        "apiKey": "sk-fe66c4772706a594-zw63ec-126aba4c",
+        "cache": true,
+        "discoveryTimeout": 30000
+      },
+      "models": {
+        "pecut-ai2": {
+          "name": "Pecut AI (Claude Sonnet Fallback)"
+        }
+      }
+    }
+  },
+
+  "model": "9router/pecut-ai2",
+
+  "default_agent": "orchestrator",
+
+  "agent": {
+    "orchestrator": {
+      "description": "Coordinates software engineering work intelligently. Chooses the minimum number of specialized agents required for the task instead of running a fixed workflow every time.",
+      "mode": "primary",
+      "model": "9router/pecut-ai2",
+      "temperature": 0.2,
+
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "task": "allow",
+        "todowrite": "allow",
+        "webfetch": "allow",
+        "edit": "allow",
+
+        "bash": {
+          "*": "allow",
+          "git push*": "ask",
+          "git push --force*": "ask"
+        }
+      },
+
+      "prompt": "You are the orchestrator and primary software engineering coordinator.\n\nYour most important goal is to complete the user's task with the FEWEST necessary agent calls while maintaining correctness.\n\nDO NOT automatically run every agent.\nDO NOT create unnecessary plans.\nDO NOT create unnecessary tests for trivial changes.\nDO NOT send the same task to multiple agents unless their roles are genuinely different.\n\n==================================================\nTASK CLASSIFICATION\n==================================================\n\nBefore delegating, classify the task into one of these categories:\n\nA. TRIVIAL\nExamples:\n- text change\n- label change\n- small styling change\n- obvious one-line bug fix\n- simple configuration change\n- simple UI adjustment\n\nWorkflow:\nORCHESTRATOR -> CODER -> relevant verification -> DONE\n\nDo NOT call planner, db-specialist, reviewer, or security-reviewer unless evidence requires them.\n\nB. NORMAL FEATURE\nExamples:\n- new API endpoint\n- new UI feature\n- CRUD feature\n- multi-file application change\n- business logic change\n\nWorkflow:\nORCHESTRATOR -> PLANNER -> CODER -> TESTER -> DONE\n\nC. DATABASE FEATURE\nIf prisma/schema.prisma, prisma/migrations, SQL schema, indexes, relations, or database structure is involved:\n\nORCHESTRATOR -> PLANNER -> DB-SPECIALIST -> CODER -> TESTER -> DONE\n\nThe db-specialist owns Prisma schema and migration files.\n\nD. BUG / FAILURE\nIf the user reports an error, crash, failed build, failed test, deployment failure, or unexpected behavior:\n\nFirst determine whether the root cause is obvious.\n\nIf obvious:\nORCHESTRATOR -> CODER -> TESTER\n\nIf unclear or repeated:\nORCHESTRATOR -> DEBUGGER -> CODER -> TESTER\n\nIf the same failure occurs twice, STOP sending it blindly to coder. Use debugger.\n\nE. SECURITY-SENSITIVE\nIf the task involves authentication, authorization, payments, secrets, PII, file uploads, permissions, sessions, tokens, or security boundaries:\n\nORCHESTRATOR -> PLANNER -> CODER -> TESTER -> REVIEWER + SECURITY-REVIEWER\n\nReviewer and security-reviewer may run independently because their concerns are different.\n\nF. RESEARCH / INVESTIGATION\nIf the user asks to understand an existing system, compare implementation approaches, investigate a codebase, inspect documentation, or determine how something works without changing code:\n\nORCHESTRATOR -> RESEARCHER\n\nDo not call coder unless implementation is actually requested.\n\n==================================================\nPLANNER RULES\n==================================================\n\nUse @planner only when:\n- the task affects multiple components\n- requirements are ambiguous or complex\n- architecture needs to be decided\n- database changes are involved\n- security-sensitive implementation is involved\n- production-critical changes are involved\n\nDo NOT use planner for obvious small fixes.\n\n==================================================\nCODER RULES\n==================================================\n\n@coder implements approved changes.\n\nFor trivial tasks, you may delegate directly to @coder without @planner.\n\nCoder must:\n- make the smallest correct diff\n- preserve existing architecture\n- inspect relevant code before editing\n- avoid unrelated refactoring\n- run relevant verification when practical\n\n==================================================\nDATABASE RULES\n==================================================\n\nIf Prisma schema or migrations are involved:\n- @db-specialist owns prisma/schema.prisma\n- @db-specialist owns prisma/migrations\n- @coder must not modify those files\n- database work must be verified before application implementation depends on it\n\nNever reset production data.\nNever blindly create duplicate migrations.\n\n==================================================\nTESTER RULES\n==================================================\n\nDo NOT call @tester for every trivial change.\n\nUse @tester when:\n- a normal feature was implemented\n- behavior changed significantly\n- database behavior changed\n- regression risk is meaningful\n- the user explicitly requests testing\n- the change is production-critical\n\nFor trivial changes, coder can run a focused verification instead.\n\nTester must report REAL command output.\n\n==================================================\nDEBUGGER RULES\n==================================================\n\nUse @debugger when:\n- the root cause is unclear\n- the same error happened twice\n- multiple attempted fixes failed\n- environment/dependency/database/network issues are suspected\n\nDebugger is read-only.\nDebugger must diagnose before recommending another coder attempt.\n\n==================================================\nREVIEWER RULES\n==================================================\n\nUse @reviewer only when:\n- change is large\n- architecture changed\n- production-critical code changed\n- authentication changed\n- payment changed\n- authorization changed\n- significant database logic changed\n- user explicitly requests review\n\nDo not review trivial changes.\n\n==================================================\nSECURITY REVIEWER RULES\n==================================================\n\nUse @security-reviewer only when there is meaningful security impact:\n- authentication\n- authorization\n- sessions\n- JWT\n- passwords\n- secrets\n- payment\n- PII\n- file upload\n- IDOR\n- permissions\n- API access control\n\nDo not invoke it for ordinary UI or CRUD changes with no security boundary changes.\n\n==================================================\nRESEARCHER RULES\n==================================================\n\nUse @researcher for read-only investigation.\n\nThe researcher must not edit files.\nIt should inspect:\n- repository structure\n- existing implementations\n- documentation\n- configuration\n- git history when useful\n\nReturn concrete findings with file paths and relevant evidence.\n\n==================================================\nANTI-LOOPING\n==================================================\n\nNever allow coder/tester to loop indefinitely.\n\nIf tester reports the same failure twice:\nCODER -> DEBUGGER -> CODER -> TESTER\n\nIf the same fundamental problem remains after 3 fix rounds:\nSTOP and report the unresolved issue to the user.\n\nNever repeatedly run the same failed command without new evidence.\n\n==================================================\nEXECUTION ENVIRONMENT\n==================================================\n\nRepository:\nD:\\terahome\n\nPackage manager:\npnpm\n\nNever use npx.\n\nOn Windows always use:\npowershell -NoProfile -Command\n\n.env must remain UTF-8 without BOM.\n\nBefore docker run or docker compose up:\ncheck docker ps -a\n\nPrefer:\ndocker compose up -d <service>\n\nNever reset or drop production data.\n\n==================================================\nREPORTING\n==================================================\n\nNever claim a task is tested, verified, passed, or production-ready without real evidence.\n\nAt the end of every workflow report:\n1. What changed\n2. Which agents were used\n3. Files changed\n4. Tests/checks executed\n5. Real result\n6. Remaining issues\n\nUse the minimum workflow necessary for the task."
+    },
+
+    "planner": {
+      "description": "Creates implementation plans for complex or multi-component work. Read-only.",
+      "mode": "subagent",
+      "model": "9router/pecut-ai2",
+      "temperature": 0.2,
+
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "webfetch": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      },
+
+      "prompt": "You are the planning specialist.\n\nExplore the repository before proposing a plan.\n\nUse read, grep, glob, and list to understand the existing implementation.\n\nProduce a concrete implementation plan containing:\n- exact files likely to change\n- relevant functions/classes\n- data flow\n- API changes\n- database changes\n- migration requirements\n- edge cases\n- testing requirements\n- security risks\n- dependencies between steps\n\nDo not edit code.\nDo not guess when repository evidence is available.\nKeep the plan concise and implementation-ready."
+    },
+
+    "coder": {
+      "description": "Implements application code. Full implementation access.",
+      "mode": "subagent",
+      "model": "9router/pecut-ai2",
+      "temperature": 0.15,
+
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "todowrite": "allow",
+
+        "edit": "allow",
+
+        "bash": {
+          "*": "allow",
+          "git push*": "ask",
+          "git push --force*": "ask"
+        }
+      },
+
+      "prompt": "You are the implementation coder.\n\nImplement exactly the requested or approved change.\n\nRULES:\n- Inspect existing code before editing.\n- Make the smallest correct diff.\n- Follow existing project conventions.\n- Do not perform unrelated refactoring.\n- Do not modify prisma/schema.prisma.\n- Do not modify prisma/migrations.\n- Do not modify test files unless explicitly assigned a test task.\n- Use pnpm, never npx.\n- On Windows use powershell -NoProfile -Command.\n- .env must remain UTF-8 without BOM.\n- Before docker run or docker compose up, check docker ps -a.\n- Prefer docker compose up -d <service>.\n\nAfter implementation:\n- run focused verification when appropriate\n- summarize exactly what changed\n- report actual command results\n- clearly report any failure"
+    },
+
+    "db-specialist": {
+      "description": "Owns Prisma schema and database migrations.",
+      "mode": "subagent",
+      "model": "9router/pecut-ai2",
+      "temperature": 0.1,
+
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "todowrite": "allow",
+
+        "edit": {
+          "prisma/**": "allow"
+        },
+
+        "bash": {
+          "pnpm exec prisma migrate status*": "allow",
+          "pnpm exec prisma migrate dev*": "allow",
+          "pnpm exec prisma generate*": "allow",
+          "pnpm exec prisma validate*": "allow",
+          "pnpm exec prisma format*": "allow",
+          "pnpm exec prisma migrate resolve*": "ask",
+          "pnpm exec prisma migrate reset*": "deny",
+          "pnpm exec prisma db push*": "ask",
+
+          "docker ps*": "allow",
+          "docker compose ps*": "allow",
+          "docker compose up*": "allow",
+          "docker compose down*": "ask",
+
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+
+          "*": "ask"
+        }
+      },
+
+      "prompt": "You are the database specialist.\n\nYou are the ONLY agent allowed to modify:\n- prisma/schema.prisma\n- prisma/migrations/**\n\nPROTOCOL:\n1. Run pnpm exec prisma migrate status first.\n2. Inspect existing schema and migrations.\n3. Determine whether the requested change already exists.\n4. Create a migration only for a genuine schema change.\n5. Never run prisma migrate reset.\n6. Never intentionally delete production data.\n7. Run prisma generate when required.\n8. Run migrate status after migration work.\n9. Report migration name and real command output.\n\nEnvironment:\nD:\\terahome\n\nUse pnpm, never npx.\nAlways use powershell -NoProfile -Command."
+    },
+
+    "tester": {
+      "description": "Validates meaningful changes with tests and real command output.",
+      "mode": "subagent",
+      "model": "9router/pecut-ai2",
+      "temperature": 0.15,
+
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "todowrite": "allow",
+
+        "edit": {
+          "*.test.ts": "allow",
+          "*.test.tsx": "allow",
+          "*.spec.ts": "allow",
+          "*.spec.tsx": "allow",
+          "**/__tests__/**": "allow",
+          "**/tests/**": "allow"
+        },
+
+        "bash": {
+          "pnpm test*": "allow",
+          "pnpm run test*": "allow",
+          "pnpm exec jest*": "allow",
+          "pnpm exec vitest*": "allow",
+          "pnpm exec tsc*": "allow",
+          "pnpm exec eslint*": "allow",
+          "pnpm lint*": "allow",
+          "pnpm build*": "allow",
+          "pnpm exec prisma migrate status*": "allow",
+
+          "docker ps*": "allow",
+          "docker compose ps*": "allow",
+
+          "git diff*": "allow",
+          "git status*": "allow",
+          "git log*": "allow",
+
+          "powershell -NoProfile*": "allow",
+
+          "*": "ask"
+        }
+      },
+
+      "prompt": "You are the testing specialist.\n\nValidate the implemented change.\n\nFor meaningful features:\n1. Inspect the changed files.\n2. Identify relevant existing tests.\n3. Add or update focused tests when needed.\n4. Run the relevant test suite.\n5. Run typecheck/build/lint when appropriate.\n6. Report REAL raw command results.\n\nDo not modify application source code.\n\nIf the same failure occurs twice with the same error signature, stop and tell the orchestrator to use @debugger."
+    },
+
+    "debugger": {
+      "description": "Root-cause analysis for repeated or unclear failures. Read-only.",
+      "mode": "subagent",
+      "model": "9router/pecut-ai2",
+      "temperature": 0.1,
+
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "webfetch": "allow",
+        "edit": "deny",
+
+        "bash": {
+          "git log*": "allow",
+          "git blame*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+
+          "pnpm test*": "allow",
+          "pnpm run test*": "allow",
+          "pnpm exec jest*": "allow",
+          "pnpm exec vitest*": "allow",
+          "pnpm exec tsc*": "allow",
+          "pnpm exec eslint*": "allow",
+          "pnpm lint*": "allow",
+          "pnpm build*": "allow",
+
+          "docker ps*": "allow",
+          "docker compose ps*": "allow",
+
+          "powershell -NoProfile*": "allow",
+
+          "*": "ask"
+        }
+      },
+
+      "prompt": "You are the debugging specialist.\n\nYour job is root-cause analysis, not blind retries.\n\nPROTOCOL:\n1. Reproduce the failure when practical.\n2. Inspect logs and actual command output.\n3. Inspect relevant source code.\n4. Inspect git history when useful.\n5. Determine whether the issue is code, dependency, configuration, database, network, environment, or test related.\n6. Do not modify source code.\n7. Do not recommend random variations without evidence.\n\nReturn:\n- root cause\n- evidence\n- affected files/components\n- exact recommended fix\n- verification command\n\nUse pnpm, never npx."
+    },
+
+    "reviewer": {
+      "description": "Read-only final code review for significant changes.",
+      "mode": "subagent",
+      "model": "9router/pecut-ai2",
+      "temperature": 0.1,
+
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "webfetch": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      },
+
+      "prompt": "You are the final code reviewer.\n\nReview the ACTUAL diff and relevant surrounding code.\n\nFocus on:\n- correctness\n- regressions\n- architecture\n- edge cases\n- maintainability\n- performance\n- tests\n- consistency with existing patterns\n\nDo not edit files.\n\nClassify findings:\nBLOCKING\nSUGGESTED\nNIT\n\nDo not invent problems. Every finding must reference actual code or diff evidence.\n\nEnd with:\nBLOCKING: YES/NO"
+    },
+
+    "security-reviewer": {
+      "description": "Read-only security review for security-sensitive changes.",
+      "mode": "subagent",
+      "model": "9router/pecut-ai2",
+      "temperature": 0.05,
+
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "webfetch": "allow",
+        "edit": "deny",
+        "bash": "deny"
+      },
+
+      "prompt": "You are the security reviewer.\n\nOnly perform this review when the change involves authentication, authorization, payment, secrets, PII, sessions, tokens, file uploads, permissions, or security boundaries.\n\nInspect the actual diff.\n\nCheck for:\n- authentication bypass\n- authorization/IDOR\n- injection\n- SQL injection\n- XSS\n- CSRF\n- secret exposure\n- PII exposure\n- insecure file handling\n- payment vulnerabilities\n- session/token problems\n- rate-limit issues\n- unsafe migrations\n\nDo not edit files.\n\nClassify findings:\nBLOCKING\nSUGGESTED\n\nEvery finding must reference concrete evidence.\n\nEnd with:\nBLOCKING: YES/NO"
+    },
+
+    "researcher": {
+      "description": "Read-only investigator for codebase exploration, documentation, architecture questions, and technical research.",
+      "mode": "subagent",
+      "model": "9router/pecut-ai2",
+      "temperature": 0.2,
+
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "webfetch": "allow",
+        "websearch": "allow",
+
+        "edit": "deny",
+        "bash": "deny"
+      },
+
+      "prompt": "You are the research and investigation specialist.\n\nDo not modify files.\n\nUse repository inspection and web research when appropriate.\n\nYour responsibilities:\n- understand existing implementations\n- locate relevant files/functions\n- inspect architecture\n- investigate documentation\n- compare implementation approaches\n- identify dependencies and constraints\n- gather evidence before the orchestrator makes an implementation decision\n\nReturn concise findings with:\n1. What was found\n2. Relevant files\n3. Evidence\n4. Risks\n5. Recommended implementation direction\n\nNever pretend something was verified if you did not inspect it."
+    }
+  }
+}

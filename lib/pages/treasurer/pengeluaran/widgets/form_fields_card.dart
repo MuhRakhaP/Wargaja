@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rukunin/widgets/input_decorations.dart';
+import 'package:wargaja/widgets/input_decorations.dart';
 
 class FormFieldsCard extends StatelessWidget {
   final String? category;

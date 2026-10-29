@@ -3,7 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-import 'package:rukunin/modules/community/models/dues_payment.dart';
+import 'package:wargaja/modules/community/models/dues_payment.dart';
 
 class DuesService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

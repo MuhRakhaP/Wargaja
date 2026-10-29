@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/rw/kegiatan/models/kegiatan.dart';
+import 'package:wargaja/pages/rw/kegiatan/models/kegiatan.dart';
 
 class DummyKegiatanData {
   static List<Kegiatan> kegiatanList = [

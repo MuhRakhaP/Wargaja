@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 // Widgets
-import 'package:rukunin/pages/secretary/widgets/meeting_schedule/meeting_item.dart';
-import 'package:rukunin/pages/secretary/widgets/meeting_schedule/empty_meeting.dart';
-import 'package:rukunin/pages/secretary/widgets/meeting_schedule/create_meeting_screen.dart';
-import 'package:rukunin/pages/secretary/widgets/meeting_schedule/meeting_detail_page.dart';
-import 'package:rukunin/pages/secretary/widgets/meeting_schedule/meeting_edit_form.dart';
+import 'package:wargaja/pages/secretary/widgets/meeting_schedule/meeting_item.dart';
+import 'package:wargaja/pages/secretary/widgets/meeting_schedule/empty_meeting.dart';
+import 'package:wargaja/pages/secretary/widgets/meeting_schedule/create_meeting_screen.dart';
+import 'package:wargaja/pages/secretary/widgets/meeting_schedule/meeting_detail_page.dart';
+import 'package:wargaja/pages/secretary/widgets/meeting_schedule/meeting_edit_form.dart';
 
 class MeetingScheduleScreen extends StatefulWidget {
   const MeetingScheduleScreen({super.key});

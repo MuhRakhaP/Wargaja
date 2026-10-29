@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/secretary/widgets/outgoing_mail/outgoing_mail_item.dart';
-import 'package:rukunin/pages/secretary/widgets/outgoing_mail/outgoing_mail_detail_page.dart';
-import 'package:rukunin/pages/secretary/widgets/outgoing_mail/outgoing_mail_form_page.dart';
-import 'package:rukunin/pages/secretary/widgets/outgoing_mail/outgoing_mail_edit_page.dart';
-import 'package:rukunin/pages/secretary/widgets/outgoing_mail/empty_outgoing_mail.dart';
+import 'package:wargaja/pages/secretary/widgets/outgoing_mail/outgoing_mail_item.dart';
+import 'package:wargaja/pages/secretary/widgets/outgoing_mail/outgoing_mail_detail_page.dart';
+import 'package:wargaja/pages/secretary/widgets/outgoing_mail/outgoing_mail_form_page.dart';
+import 'package:wargaja/pages/secretary/widgets/outgoing_mail/outgoing_mail_edit_page.dart';
+import 'package:wargaja/pages/secretary/widgets/outgoing_mail/empty_outgoing_mail.dart';
 
 class OutgoingMailScreen extends StatefulWidget {
   const OutgoingMailScreen({super.key});

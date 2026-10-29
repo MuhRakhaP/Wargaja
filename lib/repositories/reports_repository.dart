@@ -1,4 +1,4 @@
-import 'package:rukunin/pages/rt/reports/models/report_item.dart';
+import 'package:wargaja/pages/rt/reports/models/report_item.dart';
 
 class ReportsRepository {
   static final ReportsRepository _instance = ReportsRepository._internal();

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rukunin/pages/secretary/widgets/letter_templates/template_item.dart';
-import 'package:rukunin/pages/secretary/widgets/letter_templates/empty_template.dart';
-import 'package:rukunin/pages/secretary/widgets/letter_templates/template_detail.dart';
-import 'package:rukunin/pages/secretary/widgets/letter_templates/template_editor.dart';
+import 'package:wargaja/pages/secretary/widgets/letter_templates/template_item.dart';
+import 'package:wargaja/pages/secretary/widgets/letter_templates/empty_template.dart';
+import 'package:wargaja/pages/secretary/widgets/letter_templates/template_detail.dart';
+import 'package:wargaja/pages/secretary/widgets/letter_templates/template_editor.dart';
 
 class LetterTemplatesScreen extends StatefulWidget {
   const LetterTemplatesScreen({super.key});

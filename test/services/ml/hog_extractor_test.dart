@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rukunin/services/ml/data_preprocessor.dart';
-import 'package:rukunin/services/ml/hog_extractor.dart';
+import 'package:wargaja/services/ml/data_preprocessor.dart';
+import 'package:wargaja/services/ml/hog_extractor.dart';
 
 void main() {
   // This is needed to load assets in tests.
