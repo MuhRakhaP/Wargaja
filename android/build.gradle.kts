@@ -23,14 +23,18 @@ subprojects {
 // coroutines artifacts they inline are compiled for JVM 11. That combination makes
 // Kotlin 2.x fail with "Cannot inline bytecode built with JVM target 11 into
 // bytecode that is being built with JVM target 1.8" (e.g. :home_widget:compileReleaseKotlin).
-// Compile plugin Kotlin with JVM 17, matching the JDK used by CI. Java compilation
-// and the Android boot classpath are left untouched.
+// Compile plugin Java + Kotlin at JVM 11 so the targets match and inlining works.
+// Java compilation and the Android boot classpath are otherwise left untouched.
 gradle.projectsEvaluated {
     subprojects
         .filter { it.name != "app" }
         .forEach { sp ->
+            sp.tasks.withType(JavaCompile::class.java).configureEach {
+                sourceCompatibility = JavaVersion.VERSION_11.toString()
+                targetCompatibility = JavaVersion.VERSION_11.toString()
+            }
             sp.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).configureEach {
-                compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+                compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
             }
         }
 }
