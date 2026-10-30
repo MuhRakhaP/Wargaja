@@ -20,19 +20,17 @@ subprojects {
 }
 
 // Flutter plugins ship their Kotlin with `jvmTarget = 1.8`, while the androidx /
-// coroutines artifacts they inline are compiled for JVM 11. That combination makes
-// Kotlin 2.x fail with "Cannot inline bytecode built with JVM target 11 into
-// bytecode that is being built with JVM target 1.8" (e.g. :home_widget:compileReleaseKotlin).
-// Compile plugin Java + Kotlin at JVM 11 so the targets match and inlining works.
-// Java compilation and the Android boot classpath are otherwise left untouched.
+// coroutines artifacts they depend on (home_widget pulls them with dynamic
+// versions like `work-runtime-ktx:2.+`) are now compiled for JVM 11. Kotlin 2.x
+// then fails with "Cannot inline bytecode built with JVM target 11 into bytecode
+// that is being built with JVM target 1.8" on :home_widget:compileReleaseKotlin.
+// Compile plugin Kotlin at JVM 11 instead. Java compilation is left alone so AGP
+// keeps providing the Android boot classpath, and the Java/Kotlin target mismatch
+// is downgraded to a warning via kotlin.jvm.target.validation.mode in gradle.properties.
 gradle.projectsEvaluated {
     subprojects
         .filter { it.name != "app" }
         .forEach { sp ->
-            sp.tasks.withType(JavaCompile::class.java).configureEach {
-                sourceCompatibility = JavaVersion.VERSION_11.toString()
-                targetCompatibility = JavaVersion.VERSION_11.toString()
-            }
             sp.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).configureEach {
                 compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
             }
