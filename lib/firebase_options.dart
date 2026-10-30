@@ -51,11 +51,11 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAsylITH2BwLK5OBnh3NystqMSX2YSDmH4',
-    appId: '1:1029176612701:android:57d0d935ee0d3e171fbab4',
-    messagingSenderId: '1029176612701',
-    projectId: 'rukunin-app',
-    storageBucket: 'rukunin-app.firebasestorage.app',
+    apiKey: 'AIzaSyAEM6XRvWoslo7C3ix6D5uZvjyobJGkYdg',
+    appId: '1:367672341804:android:541cebc29108d20d942889',
+    messagingSenderId: '367672341804',
+    projectId: 'wargaja-91e14',
+    storageBucket: 'wargaja-91e14.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
