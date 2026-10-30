@@ -45,6 +45,32 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
           retention-days: 30
       
+      - name: Diagnose Firebase credentials
+        run: |
+          set -e
+          SA="$RUNNER_TEMP/sa.json"
+          printf '%s' '${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}' > "$SA"
+          APPID="$RUNNER_TEMP/appid.txt"
+          printf '%s' '${{ secrets.FIREBASE_APP_ID }}' > "$APPID"
+          python3 - "$SA" "$APPID" <<'PY'
+          import json, sys
+          sa = json.load(open(sys.argv[1]))
+          appid = open(sys.argv[2]).read().strip()
+          print("SA client_email :", sa.get("client_email"))
+          print("SA project_id   :", sa.get("project_id"))
+          print("configured appId:", appid)
+          print("appId project # :", appid.split(":")[1] if appid.count(":") >= 2 else "?")
+          PY
+          gcloud auth activate-service-account --key-file="$SA" --quiet
+          TOKEN=$(gcloud auth print-access-token)
+          echo "--- firebase projects visible to SA ---"
+          curl -s -H "Authorization: Bearer $TOKEN" \
+            "https://firebase.googleapis.com/v1beta1/projects?pageSize=20" | head -c 3000
+          echo
+          echo "--- app distribution probe ---"
+          curl -s -o /dev/null -w "releases list HTTP %{http_code}\n" -H "Authorization: Bearer $TOKEN" \
+            "https://firebaseappdistribution.googleapis.com/v1beta1/projects/$(cat "$APPID")/releases?pageSize=1" || true
+
       - name: Deploy to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
