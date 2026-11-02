@@ -34,10 +34,46 @@ jobs:
       
       - name: Get dependencies
         run: flutter pub get
-      
+
+      - name: Set up release signing
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -z "$ANDROID_KEYSTORE_BASE64" ]; then
+            echo "::warning::Release keystore secret is not set, falling back to debug signing."
+            exit 0
+          fi
+          KEYSTORE_PATH="$RUNNER_TEMP/wargaja-release.keystore"
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > "$KEYSTORE_PATH"
+          cat > android/key.properties <<EOF
+          storeFile=$KEYSTORE_PATH
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          keyPassword=$ANDROID_KEY_PASSWORD
+          EOF
+          echo "Release signing configured."
+
       - name: Build APK (Release)
         run: flutter build apk --release --build-number=${{ github.run_number }}
-      
+
+      - name: Verify signing certificate
+        env:
+          EXPECTED_CERT_SHA256: ${{ secrets.ANDROID_CERT_SHA256 }}
+        run: |
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -1)
+          CERTS=$("$APKSIGNER" verify --print-certs build/app/outputs/flutter-apk/app-release.apk)
+          echo "$CERTS"
+          if [ -n "$EXPECTED_CERT_SHA256" ]; then
+            echo "$CERTS" | grep -qi "$EXPECTED_CERT_SHA256" \
+              || { echo "::error::APK is not signed with the expected release certificate"; exit 1; }
+            echo "Signing certificate matches the expected release key."
+          else
+            echo "::warning::ANDROID_CERT_SHA256 is not set, skipping certificate check."
+          fi
+
       - name: Upload APK artifacts
         uses: actions/upload-artifact@v4
         with:
