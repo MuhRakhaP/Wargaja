@@ -53,7 +53,8 @@ android {
 
     signingConfigs {
         if (hasReleaseSigning) {
-            maybeCreate("release") {
+            // `create(name) { }` is the canonical Flutter/AGP Kotlin DSL pattern.
+            create("release") {
                 storeFile = file(releaseStoreFile!!)
                 storePassword =
                     keystoreProperties.getProperty("storePassword") ?: System.getenv("ANDROID_KEYSTORE_PASSWORD")
