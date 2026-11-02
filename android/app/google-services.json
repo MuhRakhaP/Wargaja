@@ -12,7 +12,20 @@
           "package_name": "com.wargaja.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "367672341804-21q3pmrb5cvatr2i588tk28tstti8e3p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wargaja.app",
+            "certificate_hash": "10346d99b19a08f1a348c06357cd369c6b15d032"
+          }
+        },
+        {
+          "client_id": "367672341804-51qltcvtg8rh5uku36ar50u6hs294pfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAEM6XRvWoslo7C3ix6D5uZvjyobJGkYdg"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "367672341804-51qltcvtg8rh5uku36ar50u6hs294pfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
