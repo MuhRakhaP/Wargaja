@@ -4,11 +4,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 /// Google OAuth client IDs for the `wargaja-91e14` Firebase project.
 ///
-/// This is the **Web** OAuth client (type 1) that is bound to the Android app
-/// `com.wargaja.app` and its release SHA-1/SHA-256 fingerprints. Google Sign-In
-/// on Android needs it as `serverClientId` to be able to return an `idToken`.
+/// This is the **Web** OAuth client (`client_type: 3` in `google-services.json`)
+/// that Firebase Auth itself uses for the Google provider. Google Sign-In on
+/// Android needs it as `serverClientId` so the returned `idToken` is issued for
+/// an audience Firebase Auth will accept. The `client_type: 1` entry is the
+/// Android client bound to `com.wargaja.app` and its signing certificate.
 const String kGoogleServerClientId =
-    '367672341804-21q3pmrb5cvatr2i588tk28tstti8e3p.apps.googleusercontent.com';
+    '367672341804-51qltcvtg8rh5uku36ar50u6hs294pfj.apps.googleusercontent.com';
 
 /// iOS/macOS OAuth client (type 2) from `GoogleService-Info.plist`.
 ///
