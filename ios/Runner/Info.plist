@@ -5,7 +5,7 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>Rukunin</string>
+		<string>Wargaja</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>Rukunin</string>
+		<string>Wargaja</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -49,5 +49,22 @@
 		<false/>
 		<key>NSFaceIDUsageDescription</key>
 		<string>We need to use Face ID or Touch ID to secure your app</string>
+		<!-- Google Sign-in Section -->
+		<key>GIDClientID</key>
+		<string>367672341804-bii0d037kbm3ul6i0erbgnd8oagco9rl.apps.googleusercontent.com</string>
+		<key>GIDServerClientID</key>
+		<string>367672341804-21q3pmrb5cvatr2i588tk28tstti8e3p.apps.googleusercontent.com</string>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>com.googleusercontent.apps.367672341804-bii0d037kbm3ul6i0erbgnd8oagco9rl</string>
+				</array>
+			</dict>
+		</array>
+		<!-- End of the Google Sign-in Section -->
 	</dict>
 </plist>

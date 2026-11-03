@@ -1,11 +1,11 @@
 {
-    "name": "rukunin",
-    "short_name": "rukunin",
+    "name": "Wargaja",
+    "short_name": "Wargaja",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#ffffff",
-    "description": "A new Flutter project.",
+    "description": "Wargaja community management app for Indonesia's RT/RW system.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -41,13 +41,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCeRSUiH4hlRaWbaTobKa7vysAUfnz1gg4',
-    appId: '1:1029176612701:web:fac40231355d882f1fbab4',
-    messagingSenderId: '1029176612701',
-    projectId: 'rukunin-app',
-    authDomain: 'rukunin-app.firebaseapp.com',
-    storageBucket: 'rukunin-app.firebasestorage.app',
-    measurementId: 'G-M6PYPXE96P',
+    apiKey: 'AIzaSyD8owKZrvfAL5yphdwP1h74HjKNNZZ3Wno',
+    appId: '1:367672341804:web:f7ff0d8f7cc7b123942889',
+    messagingSenderId: '367672341804',
+    projectId: 'wargaja-91e14',
+    authDomain: 'wargaja-91e14.firebaseapp.com',
+    storageBucket: 'wargaja-91e14.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -59,30 +58,29 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAi_HIjBKp-vWQwTNk5iAoTui0K9uXWNlI',
-    appId: '1:1029176612701:ios:2a8a08208e8beee01fbab4',
-    messagingSenderId: '1029176612701',
-    projectId: 'rukunin-app',
-    storageBucket: 'rukunin-app.firebasestorage.app',
-    iosBundleId: 'com.squadronteam.rukunin',
+    apiKey: 'AIzaSyD9KBW73IIi-ayej0nV_UUjy-DI2r4W09Q',
+    appId: '1:367672341804:ios:41a9755f2281787e942889',
+    messagingSenderId: '367672341804',
+    projectId: 'wargaja-91e14',
+    storageBucket: 'wargaja-91e14.firebasestorage.app',
+    iosBundleId: 'com.wargaja.app',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAi_HIjBKp-vWQwTNk5iAoTui0K9uXWNlI',
-    appId: '1:1029176612701:ios:2a8a08208e8beee01fbab4',
-    messagingSenderId: '1029176612701',
-    projectId: 'rukunin-app',
-    storageBucket: 'rukunin-app.firebasestorage.app',
-    iosBundleId: 'com.squadronteam.rukunin',
+    apiKey: 'AIzaSyD9KBW73IIi-ayej0nV_UUjy-DI2r4W09Q',
+    appId: '1:367672341804:ios:41a9755f2281787e942889',
+    messagingSenderId: '367672341804',
+    projectId: 'wargaja-91e14',
+    storageBucket: 'wargaja-91e14.firebasestorage.app',
+    iosBundleId: 'com.wargaja.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCeRSUiH4hlRaWbaTobKa7vysAUfnz1gg4',
-    appId: '1:1029176612701:web:c7c336fc29bca8db1fbab4',
-    messagingSenderId: '1029176612701',
-    projectId: 'rukunin-app',
-    authDomain: 'rukunin-app.firebaseapp.com',
-    storageBucket: 'rukunin-app.firebasestorage.app',
-    measurementId: 'G-Y51XTTC0HH',
+    apiKey: 'AIzaSyD8owKZrvfAL5yphdwP1h74HjKNNZZ3Wno',
+    appId: '1:367672341804:web:f7ff0d8f7cc7b123942889',
+    messagingSenderId: '367672341804',
+    projectId: 'wargaja-91e14',
+    authDomain: 'wargaja-91e14.firebaseapp.com',
+    storageBucket: 'wargaja-91e14.firebasestorage.app',
   );
 }

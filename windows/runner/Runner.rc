@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.squadronteam" "\0"
-            VALUE "FileDescription", "rukunin" "\0"
+            VALUE "CompanyName", "Wargaja" "\0"
+            VALUE "FileDescription", "Wargaja" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "rukunin" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 com.squadronteam. All rights reserved." "\0"
-            VALUE "OriginalFilename", "rukunin.exe" "\0"
-            VALUE "ProductName", "rukunin" "\0"
+            VALUE "InternalName", "Wargaja" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 Wargaja. All rights reserved." "\0"
+            VALUE "OriginalFilename", "wargaja.exe" "\0"
+            VALUE "ProductName", "Wargaja" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

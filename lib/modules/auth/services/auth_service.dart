@@ -36,8 +36,11 @@ class AuthService {
   }
 
   Future<UserCredential?> signInWithGoogle() async {
-    final UserCredential userCredential = await _googleAuthService
+    final UserCredential? userCredential = await _googleAuthService
         .signInWithGoogle();
+
+    // User closed the Google account picker.
+    if (userCredential == null) return null;
 
     final isNewUser = userCredential.additionalUserInfo?.isNewUser ?? false;
 
