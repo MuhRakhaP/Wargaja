@@ -114,7 +114,7 @@ class _BiometricLockScreenState extends State<BiometricLockScreen>
             const Icon(Icons.lock_outline, size: 80, color: Colors.white),
             const SizedBox(height: 24),
             const Text(
-              'Rukunin Terkunci',
+              'Wargaja Terkunci',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
