@@ -80,6 +80,9 @@ class AuthService {
       userData['photoURL'] = userCredential.user!.photoURL;
 
       await _cacheService.saveUserData(userData);
+    } else {
+      // Self-heal accounts whose Firestore document is missing.
+      await _createUserDocument(userCredential);
     }
   }
 

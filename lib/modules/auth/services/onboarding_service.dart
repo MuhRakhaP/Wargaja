@@ -40,7 +40,21 @@ class OnboardingService {
         'updatedAt': FieldValue.serverTimestamp(),
       };
 
-      await _firestore.collection('users').doc(user.uid).update(firestoreData);
+      final userRef = _firestore.collection('users').doc(user.uid);
+      final existingDoc = await userRef.get();
+
+      // Use merge-create instead of update(): accounts created before their
+      // Firestore document existed (e.g. while rules denied writes) would
+      // otherwise fail with `not-found`.
+      await userRef.set({
+        ...firestoreData,
+        if (!existingDoc.exists) ...{
+          'name': user.displayName ?? 'Unnamed User',
+          'email': user.email ?? '',
+          'role': 'resident',
+          'createdAt': FieldValue.serverTimestamp(),
+        },
+      }, SetOptions(merge: true));
 
       final cachedData = {
         'nik': state.nikController.text.trim(),

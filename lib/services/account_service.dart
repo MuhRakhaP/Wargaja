@@ -61,8 +61,11 @@ class AccountService {
         'updatedAt': FieldValue.serverTimestamp(),
       };
 
-      // Update user data in Firestore
-      await _firestore.collection('users').doc(user.uid).update(updateData);
+      // Merge-create so a missing user document cannot throw `not-found`.
+      await _firestore
+          .collection('users')
+          .doc(user.uid)
+          .set(updateData, SetOptions(merge: true));
 
       // Update cache
       final cachedData = await UserCacheService().getUserData() ?? {};
