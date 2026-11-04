@@ -1,33 +1,9 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart' show kIsWeb, compute;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:wargaja/modules/community/services/dues_service.dart';
 import 'package:wargaja/theme/app_colors.dart';
-import 'package:wargaja/types/image_matrix.dart';
-import 'package:wargaja/utils/image_processing/image_utils_pure.dart';
-import 'package:wargaja/utils/image_processing/image_utils_ui.dart';
-import 'package:wargaja/utils/metrics/ssim_metric.dart';
-
-class SsimRequest {
-  final ImageMatrix template;
-  final ImageMatrix uploaded;
-
-  SsimRequest({required this.template, required this.uploaded});
-}
-
-// MUST be top-level
-double computeSsimIsolate(SsimRequest data) {
-  return SsimMetric.structuralSimilarity(
-    data.template,
-    data.uploaded,
-    windowSize: 7,
-    stride: 4,
-  );
-}
 
 class PaymentConfirmationScreen extends StatefulWidget {
   final String period;
@@ -47,394 +23,11 @@ class PaymentConfirmationScreen extends StatefulWidget {
 }
 
 class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
-  File? _proofImage;
-  XFile? _pickedFile;
   final _notesController = TextEditingController();
-  bool _isUploading = false;
-  bool _isValidating = false;
+  bool _isSubmitting = false;
   final DuesService _duesService = DuesService();
 
-  Future<void> _pickImage(ImageSource source) async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(
-      source: source,
-      maxWidth: 1920,
-      maxHeight: 1920,
-      imageQuality: 85,
-    );
-
-    if (pickedFile != null) {
-      setState(() {
-        _pickedFile = pickedFile;
-        if (!kIsWeb) {
-          _proofImage = File(pickedFile.path);
-        }
-      });
-    }
-  }
-
-  void _showImageSourceDialog() {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) {
-        return Container(
-          padding: const EdgeInsets.all(24),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-              const SizedBox(height: 24),
-              const Text(
-                'Pilih Sumber Gambar',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 20),
-              _buildSourceOption(Icons.photo_library, 'Galeri', () {
-                Navigator.pop(context);
-                _pickImage(ImageSource.gallery);
-              }),
-              _buildSourceOption(Icons.camera_alt, 'Kamera', () {
-                Navigator.pop(context);
-                _pickImage(ImageSource.camera);
-              }),
-              const SizedBox(height: 24),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildSourceOption(IconData icon, String label, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.grey[300]!),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: AppColors.primary.withAlpha(26),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(icon, color: AppColors.primary, size: 20),
-            ),
-            const SizedBox(width: 16),
-            Text(
-              label,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildProofImageWidget() {
-    if (_pickedFile == null) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.cloud_upload_outlined, size: 48, color: Colors.grey[400]),
-          const SizedBox(height: 12),
-          Text(
-            'Tap untuk upload bukti',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Colors.grey[600],
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'JPG, PNG (Max 5MB)',
-            style: TextStyle(fontSize: 12, color: Colors.grey[500]),
-          ),
-        ],
-      );
-    }
-
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(14),
-      child: Stack(
-        children: [
-          kIsWeb
-              ? Image.network(
-                  _pickedFile!.path,
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    // For web, use FutureBuilder to load bytes
-                    return FutureBuilder<Uint8List>(
-                      future: _pickedFile!.readAsBytes(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return Image.memory(
-                            snapshot.data!,
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
-                          );
-                        }
-                        return const Center(child: CircularProgressIndicator());
-                      },
-                    );
-                  },
-                )
-              : Image.file(
-                  _proofImage!,
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-          Positioned(
-            top: 8,
-            right: 8,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  _proofImage = null;
-                  _pickedFile = null;
-                });
-              },
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Icon(Icons.close, color: Colors.white, size: 20),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<bool> _validateReceiptImage() async {
-    if (_pickedFile == null) return false;
-
-    setState(() => _isValidating = true);
-
-    try {
-      // MAIN ISOLATE — decode & preprocess
-      final templateBytes = await ImageUtilsUi.loadAssetImage(
-        'assets/ml_test/receipt.jpg',
-      );
-      final uploadedBytes = await _pickedFile!.readAsBytes();
-
-      final templateMatrix = await ImageUtilsUi.loadAndConvertToGrayscale(
-        templateBytes,
-        maxDimension: 384,
-      );
-
-      final uploadedMatrix = await ImageUtilsUi.loadAndConvertToGrayscale(
-        uploadedBytes,
-        maxDimension: 384,
-      );
-
-      final resizedUploaded = ImageUtilsPure.resizeToMatch(
-        uploadedMatrix,
-        templateMatrix[0].length,
-        templateMatrix.length,
-      );
-
-      // BACKGROUND ISOLATE — SSIM ONLY
-      final ssimScore = await compute(
-        computeSsimIsolate,
-        SsimRequest(template: templateMatrix, uploaded: resizedUploaded),
-      );
-
-      setState(() => _isValidating = false);
-
-      if (ssimScore < 0.7) {
-        if (mounted) {
-          _showValidationFailedDialog(ssimScore);
-        }
-        return false;
-      }
-
-      return true;
-    } catch (e) {
-      setState(() => _isValidating = false);
-      return true; // fail-open
-    }
-  }
-
-  void _showValidationFailedDialog(double ssimScore) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          title: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.red.withAlpha(26),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Icon(
-                  Icons.warning_amber_rounded,
-                  color: Colors.red,
-                  size: 24,
-                ),
-              ),
-              const SizedBox(width: 12),
-              const Expanded(
-                child: Text(
-                  'Gambar Terdeteksi Tidak Valid',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                ),
-              ),
-            ],
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Sistem mendeteksi bahwa gambar yang Anda upload kemungkinan bukan bukti pembayaran yang valid.',
-                style: TextStyle(fontSize: 14),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.grey.withAlpha(26),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Skor Kemiripan:',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '${(ssimScore * 100).toStringAsFixed(1)}% (Minimum: 70%)',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.red[700],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                'Pastikan:',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(height: 8),
-              _buildChecklistItem(
-                'Gambar adalah screenshot/foto asli bukti transfer',
-              ),
-              _buildChecklistItem('Gambar tidak dimanipulasi atau diedit'),
-              _buildChecklistItem('Gambar jelas dan tidak blur'),
-              _buildChecklistItem('Gambar menampilkan informasi lengkap'),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-                // Clear the image and allow user to re-upload
-                setState(() {
-                  _proofImage = null;
-                  _pickedFile = null;
-                });
-              },
-              child: const Text(
-                'Upload Ulang',
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text(
-                'Coba Lagi',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.grey[600],
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Widget _buildChecklistItem(String text) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 6),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(Icons.check_circle_outline, size: 16, color: Colors.grey[600]),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              text,
-              style: TextStyle(fontSize: 13, color: Colors.grey[700]),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Future<void> _submitPayment() async {
-    if (_pickedFile == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Mohon upload bukti pembayaran terlebih dahulu'),
-          backgroundColor: Colors.red,
-        ),
-      );
-      return;
-    }
-
-    // Validate receipt image using SSIM
-    final isValid = await _validateReceiptImage();
-    if (!isValid) {
-      return; // Stop submission if validation fails
-    }
-
     // Get current user
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) {
@@ -448,7 +41,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
     }
 
     setState(() {
-      _isUploading = true;
+      _isSubmitting = true;
     });
 
     try {
@@ -479,7 +72,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
           : DateTime.now().year;
 
       // Submit payment using the service
-      final paymentId = await _duesService.submitPaymentWithFile(
+      final paymentId = await _duesService.submitPayment(
         userId: currentUser.uid,
         userName: userName,
         userPhone: userPhone,
@@ -488,13 +81,12 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
         amount: amount,
         month: month,
         year: year,
-        receiptFile: _pickedFile!,
         notes: _notesController.text.trim(),
       );
 
       if (mounted) {
         setState(() {
-          _isUploading = false;
+          _isSubmitting = false;
         });
 
         if (paymentId != null) {
@@ -522,7 +114,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
     } catch (e) {
       if (mounted) {
         setState(() {
-          _isUploading = false;
+          _isSubmitting = false;
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
@@ -1039,34 +631,30 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
 
             const SizedBox(height: 24),
 
-            // Upload Proof Section
-            const Text(
-              'Bukti Pembayaran',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Upload screenshot/foto bukti transfer dari mobile banking',
-              style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-            ),
-            const SizedBox(height: 16),
-
-            GestureDetector(
-              onTap: _showImageSourceDialog,
-              child: Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: _pickedFile != null
-                        ? AppColors.primary
-                        : Colors.grey[300]!,
-                    width: 2,
+            // Payment summary note
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: AppColors.primary.withAlpha(13),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(
+                    Icons.info_outline,
+                    size: 20,
+                    color: AppColors.primary,
                   ),
-                ),
-                child: _buildProofImageWidget(),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      'Pembayaran dicatat sebagai "menunggu konfirmasi". '
+                      'Bendahara akan memverifikasi pembayaran Anda.',
+                      style: TextStyle(fontSize: 13, color: Colors.grey[700]),
+                    ),
+                  ),
+                ],
               ),
             ),
 
@@ -1103,9 +691,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: (_isUploading || _isValidating)
-                    ? null
-                    : _submitPayment,
+                onPressed: _isSubmitting ? null : _submitPayment,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
@@ -1114,7 +700,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                   ),
                   elevation: 0,
                 ),
-                child: (_isUploading || _isValidating)
+                child: _isSubmitting
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -1128,7 +714,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
                           ),
                           const SizedBox(width: 12),
                           Text(
-                            _isValidating ? 'Memvalidasi...' : 'Mengirim...',
+                            'Mengirim...',
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,

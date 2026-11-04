@@ -1,8 +1,4 @@
-import 'dart:io';
-import 'dart:typed_data';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:wargaja/l10n/app_localizations.dart';
 import 'package:wargaja/modules/marketplace/models/product.dart';
 import 'package:wargaja/modules/marketplace/services/product_service.dart';
@@ -79,9 +75,6 @@ class _OwnerProductDetailScreenState extends State<OwnerProductDetailScreen> {
       text: _currentProduct.description,
     );
     String? selectedCategory = _currentProduct.category;
-    XFile? newImage;
-    Uint8List? webImage;
-    final ImagePicker picker = ImagePicker();
 
     final categories = [
       l10n.vegetables,
@@ -142,93 +135,6 @@ class _OwnerProductDetailScreenState extends State<OwnerProductDetailScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Image Section
-                        Center(
-                          child: GestureDetector(
-                            onTap: () async {
-                              final source = kIsWeb
-                                  ? ImageSource.gallery
-                                  : await _showImageSourceDialog(context);
-                              if (source == null) return;
-
-                              final XFile? image = await picker.pickImage(
-                                source: source,
-                                maxWidth: 800,
-                                maxHeight: 800,
-                                imageQuality: 75,
-                              );
-
-                              if (image != null) {
-                                final bytes = await image.readAsBytes();
-                                if (bytes.length > 2 * 1024 * 1024) {
-                                  if (context.mounted) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(l10n.imageTooLarge),
-                                        backgroundColor: Colors.red,
-                                      ),
-                                    );
-                                  }
-                                  return;
-                                }
-                                setDialogState(() {
-                                  newImage = image;
-                                  if (kIsWeb) webImage = bytes;
-                                });
-                              }
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 180,
-                              decoration: BoxDecoration(
-                                color: Colors.grey[200],
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: AppColors.primary.withOpacity(0.3),
-                                ),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: newImage != null
-                                    ? (kIsWeb
-                                          ? Image.memory(
-                                              webImage!,
-                                              fit: BoxFit.cover,
-                                            )
-                                          : Image.file(
-                                              File(newImage!.path),
-                                              fit: BoxFit.cover,
-                                            ))
-                                    : (_currentProduct.imageUrl.isNotEmpty
-                                          ? Image.network(
-                                              _currentProduct.imageUrl,
-                                              fit: BoxFit.cover,
-                                            )
-                                          : Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.add_photo_alternate,
-                                                  size: 40,
-                                                  color: Colors.grey[400],
-                                                ),
-                                                const SizedBox(height: 8),
-                                                Text(
-                                                  l10n.tapToChangeImage,
-                                                  style: TextStyle(
-                                                    color: Colors.grey[600],
-                                                  ),
-                                                ),
-                                              ],
-                                            )),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        const SizedBox(height: 20),
-
                         // Name Field
                         TextField(
                           controller: nameController,
@@ -419,26 +325,6 @@ class _OwnerProductDetailScreenState extends State<OwnerProductDetailScreen> {
                               ),
                             );
 
-                            String? imageUrl = _currentProduct.imageUrl;
-
-                            // Upload new image if selected
-                            if (newImage != null) {
-                              final uploadedUrl = await _productService
-                                  .uploadProductImage(
-                                    newImage!,
-                                    _currentProduct.shopId,
-                                  );
-                              if (uploadedUrl != null) {
-                                // Delete old image if exists
-                                if (_currentProduct.imageUrl.isNotEmpty) {
-                                  await _productService.deleteProductImage(
-                                    _currentProduct.imageUrl,
-                                  );
-                                }
-                                imageUrl = uploadedUrl;
-                              }
-                            }
-
                             final success = await _productService.updateProduct(
                               _currentProduct.id,
                               {
@@ -450,7 +336,6 @@ class _OwnerProductDetailScreenState extends State<OwnerProductDetailScreen> {
                                 'description': descController.text.trim(),
                                 'category': selectedCategory!.toLowerCase(),
                                 'badge': selectedCategory,
-                                'imageUrl': imageUrl,
                               },
                             );
 
@@ -471,7 +356,6 @@ class _OwnerProductDetailScreenState extends State<OwnerProductDetailScreen> {
                                     description: descController.text.trim(),
                                     category: selectedCategory?.toLowerCase(),
                                     badge: selectedCategory,
-                                    imageUrl: imageUrl ?? '',
                                   );
                                 });
 
@@ -515,35 +399,6 @@ class _OwnerProductDetailScreenState extends State<OwnerProductDetailScreen> {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Future<ImageSource?> _showImageSourceDialog(BuildContext context) async {
-    final l10n = AppLocalizations.of(context)!;
-
-    return showDialog<ImageSource>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.selectImageSource),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.camera_alt, color: AppColors.primary),
-              title: Text(l10n.camera),
-              onTap: () => Navigator.pop(context, ImageSource.camera),
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.photo_library,
-                color: AppColors.primary,
-              ),
-              title: Text(l10n.gallery),
-              onTap: () => Navigator.pop(context, ImageSource.gallery),
-            ),
-          ],
         ),
       ),
     );
@@ -653,13 +508,6 @@ class _OwnerProductDetailScreenState extends State<OwnerProductDetailScreen> {
                           builder: (context) =>
                               const Center(child: CircularProgressIndicator()),
                         );
-
-                        // Delete image from storage
-                        if (_currentProduct.imageUrl.isNotEmpty) {
-                          await _productService.deleteProductImage(
-                            _currentProduct.imageUrl,
-                          );
-                        }
 
                         // Delete product
                         final success = await _productService.deleteProduct(

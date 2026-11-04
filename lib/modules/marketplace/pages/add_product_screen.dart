@@ -1,9 +1,5 @@
-import 'dart:io';
-import 'dart:typed_data';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:wargaja/modules/marketplace/models/product.dart';
 import 'package:wargaja/modules/marketplace/models/shop.dart';
 import 'package:wargaja/modules/marketplace/services/product_service.dart';
@@ -26,13 +22,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final _priceController = TextEditingController();
   final _stockController = TextEditingController();
   final _descriptionController = TextEditingController();
-  final ImagePicker _picker = ImagePicker();
 
   String? _selectedCategory;
   String? _selectedUnit;
   bool _isLoading = false;
-  XFile? _selectedImage;
-  Uint8List? _webImage;
 
   final List<String> _categories = [
     'Sayur',
@@ -124,114 +117,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       ),
                     ),
                   ],
-                ),
-              ),
-
-              const SizedBox(height: 24),
-
-              // Image Upload Section
-              _buildSectionTitle(l10n.productPhoto),
-              const SizedBox(height: 12),
-              GestureDetector(
-                onTap: _showImageSourceOptions,
-                child: Container(
-                  width: double.infinity,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: AppColors.primary.withOpacity(0.3),
-                      width: 2,
-                      style: BorderStyle.solid,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.04),
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: _selectedImage == null
-                      ? Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 64,
-                              height: 64,
-                              decoration: BoxDecoration(
-                                color: AppColors.primary.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: const Icon(
-                                Icons.add_photo_alternate,
-                                size: 32,
-                                color: AppColors.primary,
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            Text(
-                              l10n.tapToChangeImage,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.primary,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              l10n.maxImageSize,
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey[500],
-                              ),
-                            ),
-                          ],
-                        )
-                      : Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(14),
-                              child: kIsWeb
-                                  ? Image.memory(
-                                      _webImage!,
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Image.file(
-                                      File(_selectedImage!.path),
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      fit: BoxFit.cover,
-                                    ),
-                            ),
-                            Positioned(
-                              top: 8,
-                              right: 8,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.6),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.close,
-                                    color: Colors.white,
-                                    size: 20,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _selectedImage = null;
-                                      _webImage = null;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
                 ),
               ),
 
@@ -426,171 +311,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
     ];
   }
 
-  void _showImageSourceOptions() {
-    final l10n = AppLocalizations.of(context)!;
-
-    if (kIsWeb) {
-      _pickImage(ImageSource.gallery);
-    } else {
-      showModalBottomSheet(
-        context: context,
-        backgroundColor: Colors.white,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        builder: (BuildContext context) {
-          return SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 40,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    l10n.selectImageSource,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  ListTile(
-                    leading: Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Icon(
-                        Icons.camera_alt,
-                        color: AppColors.primary,
-                      ),
-                    ),
-                    title: Text(
-                      l10n.camera,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                      _pickImage(ImageSource.camera);
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  ListTile(
-                    leading: Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Icon(
-                        Icons.photo_library,
-                        color: AppColors.primary,
-                      ),
-                    ),
-                    title: Text(
-                      l10n.gallery,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                      _pickImage(ImageSource.gallery);
-                    },
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      );
-    }
-  }
-
-  Future<void> _pickImage(ImageSource source) async {
-    final l10n = AppLocalizations.of(context)!;
-
-    try {
-      final XFile? image = await _picker.pickImage(
-        source: source,
-        maxWidth: 800,
-        maxHeight: 800,
-        imageQuality: 75,
-      );
-
-      if (image != null) {
-        final bytes = await image.readAsBytes();
-        if (bytes.length > 2 * 1024 * 1024) {
-          if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(l10n.imageTooLarge),
-                backgroundColor: Colors.red,
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
-          }
-          return;
-        }
-
-        setState(() {
-          _selectedImage = image;
-          if (kIsWeb) {
-            _webImage = bytes;
-          }
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.failedToPickImage(e.toString())),
-            backgroundColor: Colors.red,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
-      }
-    }
-  }
-
   Future<void> _saveProduct() async {
     final l10n = AppLocalizations.of(context)!;
 
     if (!_formKey.currentState!.validate()) return;
 
-    if (_selectedImage == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(l10n.addPhotoFirst),
-          backgroundColor: Colors.red,
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
-      return;
-    }
-
     setState(() => _isLoading = true);
 
     try {
-      print('Try to upload image!');
-      final imageUrl = await ProductService().uploadProductImage(
-        _selectedImage!,
-        widget.shop.id,
-      );
-
-      print('After try to upload image!');
-
-      if (imageUrl == null) {
-        throw Exception('Gagal mengupload gambar');
-      }
-
       final product = Product(
         name: _nameController.text.trim(),
         description: _descriptionController.text.trim(),
@@ -604,7 +332,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
         isActive: true,
       );
 
-      final productId = await ProductService().addProduct(product, imageUrl);
+      final productId = await ProductService().addProduct(product);
 
       setState(() => _isLoading = false);
 

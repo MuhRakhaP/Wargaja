@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:image_picker/image_picker.dart';
 import 'package:wargaja/theme/app_colors.dart';
 import 'package:wargaja/modules/community/services/document_service.dart';
-import 'package:wargaja/services/storage_service.dart';
 import 'package:wargaja/widgets/loading_indicator.dart';
 import 'package:wargaja/widgets/rukunin_app_bar.dart';
 
@@ -28,94 +25,18 @@ class DocumentRequestFormScreen extends StatefulWidget {
 
 class _DocumentRequestFormScreenState extends State<DocumentRequestFormScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _picker = ImagePicker();
   final _documentService = DocumentService();
-  final _storageService = StorageService();
 
   final _purposeController = TextEditingController();
   final _notesController = TextEditingController();
 
   bool _isSubmitting = false;
-  double _uploadProgress = 0.0;
-  final List<XFile> _attachments = [];
 
   @override
   void dispose() {
     _purposeController.dispose();
     _notesController.dispose();
     super.dispose();
-  }
-
-  Future<void> _pickImage() async {
-    try {
-      final XFile? image = await _picker.pickImage(
-        source: ImageSource.gallery,
-        maxWidth: 1920,
-        maxHeight: 1080,
-        imageQuality: 85,
-      );
-
-      if (image != null) {
-        // Validate file size (max 5MB)
-        final bytes = await image.readAsBytes();
-        if (!_storageService.validateFileSize(bytes, maxSizeInMB: 5)) {
-          if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: const Text('Ukuran file maksimal 5MB'),
-                backgroundColor: Colors.orange,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            );
-          }
-          return;
-        }
-
-        // Validate file type
-        if (!_storageService.validateFileType(image.name)) {
-          if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: const Text('Format file tidak didukung'),
-                backgroundColor: Colors.orange,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            );
-          }
-          return;
-        }
-
-        setState(() {
-          _attachments.add(image);
-        });
-      }
-    } catch (e) {
-      debugPrint('Error picking image: $e');
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Gagal memilih gambar: $e'),
-            backgroundColor: Colors.red,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        );
-      }
-    }
-  }
-
-  void _removeAttachment(int index) {
-    setState(() {
-      _attachments.removeAt(index);
-    });
   }
 
   Future<void> _submitRequest() async {
@@ -139,35 +60,16 @@ class _DocumentRequestFormScreenState extends State<DocumentRequestFormScreen> {
 
     setState(() {
       _isSubmitting = true;
-      _uploadProgress = 0.0;
     });
 
     try {
-      // Generate temporary request ID
-      final tempRequestId = DateTime.now().millisecondsSinceEpoch.toString();
-
-      // Upload attachments if any
-      List<String> attachmentUrls = [];
-      if (_attachments.isNotEmpty) {
-        attachmentUrls = await _storageService.uploadMultipleAttachments(
-          files: _attachments,
-          documentType: widget.documentType,
-          requestId: tempRequestId,
-          onProgress: (current, total) {
-            setState(() {
-              _uploadProgress = current / total;
-            });
-          },
-        );
-      }
-
       // Create document request
       await _documentService.createDocumentRequest(
         documentType: widget.documentType,
         documentTitle: widget.documentTitle,
         purpose: _purposeController.text.trim(),
         notes: _notesController.text.trim(),
-        attachmentUrls: attachmentUrls,
+        attachmentUrls: const [],
       );
 
       if (mounted) {
@@ -203,7 +105,6 @@ class _DocumentRequestFormScreenState extends State<DocumentRequestFormScreen> {
       if (mounted) {
         setState(() {
           _isSubmitting = false;
-          _uploadProgress = 0.0;
         });
       }
     }
@@ -319,111 +220,7 @@ class _DocumentRequestFormScreenState extends State<DocumentRequestFormScreen> {
 
                     const SizedBox(height: 20),
 
-                    // Attachments Section
-                    _buildLabel('Lampiran Dokumen Pendukung'),
-                    const SizedBox(height: 8),
-
-                    if (_attachments.isNotEmpty) ...[
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: List.generate(_attachments.length, (index) {
-                          return _buildAttachmentPreview(index);
-                        }),
-                      ),
-                      const SizedBox(height: 12),
-                    ],
-
-                    GestureDetector(
-                      onTap: _pickImage,
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: Container(
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: AppColors.primary.withOpacity(0.3),
-                              width: 2,
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              const Icon(
-                                Icons.cloud_upload_outlined,
-                                color: AppColors.primary,
-                                size: 40,
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                'Unggah Dokumen',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.grey[700],
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                'Format: JPG, PNG (Max 5MB)',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey[500],
-                                ),
-                              ),
-                              if (kIsWeb) ...[
-                                const SizedBox(height: 4),
-                                const Text(
-                                  'Klik untuk memilih file',
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    color: AppColors.primary,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-
                     const SizedBox(height: 32),
-
-                    // Upload Progress Indicator
-                    if (_isSubmitting && _uploadProgress > 0) ...[
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.grey[200]!),
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Mengunggah lampiran... ${(_uploadProgress * 100).toInt()}%',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey[700],
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            LinearProgressIndicator(
-                              value: _uploadProgress,
-                              backgroundColor: Colors.grey[200],
-                              valueColor: const AlwaysStoppedAnimation<Color>(
-                                AppColors.primary,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
 
                     // Submit Button
                     SizedBox(
@@ -476,75 +273,6 @@ class _DocumentRequestFormScreenState extends State<DocumentRequestFormScreen> {
         ),
       ),
     );
-  }
-
-  Widget _buildAttachmentPreview(int index) {
-    return FutureBuilder<Widget>(
-      future: _buildImageWidget(_attachments[index]),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey[300]!),
-              color: Colors.grey[100],
-            ),
-            child: const Center(child: LoadingIndicator()),
-          );
-        }
-
-        return Stack(
-          children: [
-            Container(
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.grey[300]!),
-              ),
-              clipBehavior: Clip.antiAlias,
-              child: snapshot.data ?? const Icon(Icons.error),
-            ),
-            Positioned(
-              top: 4,
-              right: 4,
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () => _removeAttachment(index),
-                  child: Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 4,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.close,
-                      color: Colors.white,
-                      size: 16,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<Widget> _buildImageWidget(XFile file) async {
-    final bytes = await file.readAsBytes();
-    return Image.memory(bytes, fit: BoxFit.cover, width: 100, height: 100);
   }
 
   Widget _buildLabel(String label) {

@@ -157,42 +157,7 @@ class _SplashScreenState extends State<SplashScreen>
                         padding: const EdgeInsets.only(bottom: 40),
                         child: Column(
                           children: [
-                            Text(
-                              'Developed by',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.black.withAlpha(153),
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            const SizedBox(height: 6),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(6),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withAlpha(40),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Icon(
-                                    Icons.code,
-                                    size: 14,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                const Text(
-                                  'Squadron Team',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700,
-                                    letterSpacing: 0.5,
-                                  ),
-                                ),
-                              ],
-                            ),
+
                           ],
                         ),
                       ),

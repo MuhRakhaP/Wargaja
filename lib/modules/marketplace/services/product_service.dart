@@ -1,14 +1,8 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:image_picker/image_picker.dart';
 import 'package:wargaja/modules/marketplace/models/product.dart';
 
 class ProductService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseStorage _storage = FirebaseStorage.instance;
   final String _collectionName = 'marketplace_products';
 
   // Get all products as stream
@@ -145,66 +139,16 @@ class ProductService {
     }
   }
 
-  // Upload product image
-  Future<String?> uploadProductImage(XFile image, String shopId) async {
+  // Add product
+  Future<String?> addProduct(Product product) async {
     try {
-      final timestamp = DateTime.now().millisecondsSinceEpoch;
-      final fileName = '${shopId}_$timestamp.jpg';
-      final ref = _storage.ref().child('products/$shopId/$fileName');
-
-      UploadTask uploadTask;
-
-      if (kIsWeb) {
-        // Web: read as byte
-        final bytes = await image.readAsBytes();
-
-        uploadTask = ref.putData(
-          bytes,
-          SettableMetadata(contentType: 'image/jpeg'),
-        );
-      } else {
-        final file = File(image.path);
-
-        uploadTask = ref.putFile(
-          file,
-          SettableMetadata(contentType: 'image/jpeg'),
-        );
-      }
-
-      final snapshot = await uploadTask;
-      final url = await snapshot.ref.getDownloadURL();
-      return url;
-    } catch (e) {
-      print('Error uploading image: $e');
-      return null;
-    }
-  }
-
-  // Add product with image
-  Future<String?> addProduct(Product product, String imageUrl) async {
-    try {
-      final productData = product.toFirestore();
-      productData['imageUrl'] = imageUrl;
-
       final docRef = await _firestore
           .collection(_collectionName)
-          .add(productData);
+          .add(product.toFirestore());
       return docRef.id;
     } catch (e) {
       print('Error adding product: $e');
       return null;
-    }
-  }
-
-  // Delete product image from storage
-  Future<bool> deleteProductImage(String imageUrl) async {
-    try {
-      final ref = _storage.refFromURL(imageUrl);
-      await ref.delete();
-      return true;
-    } catch (e) {
-      print('Error deleting image: $e');
-      return false;
     }
   }
 

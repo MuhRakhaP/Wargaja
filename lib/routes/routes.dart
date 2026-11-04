@@ -1,7 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:wargaja/pages/general/guide_screen.dart';
-import 'package:wargaja/pages/general/ml_inference_test/ml_inference_test_screen.dart';
 import 'package:wargaja/pages/splash_screen.dart';
 import 'package:wargaja/routes/rw_routes.dart';
 import 'package:wargaja/routes/rt_routes.dart';
@@ -97,12 +96,6 @@ final router = GoRouter(
     GoRoute(
       path: '/user-guides',
       builder: (context, state) => const GuideScreen(),
-    ),
-
-    // TODO: THIS ROUTE IS JUST FOR TESTING, REMOVE SOON!
-    GoRoute(
-      path: '/ml-inference-test',
-      builder: (context, state) => const MLInferenceTestScreen(),
     ),
   ],
 );

@@ -1,16 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 import 'package:wargaja/modules/community/models/dues_payment.dart';
 
 class DuesService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseStorage _storage = FirebaseStorage.instance;
 
-  // Submit payment with XFile (works for both web and mobile)
-  Future<String?> submitPaymentWithFile({
+  /// Records a resident's payment claim.
+  ///
+  /// There is no proof-of-payment upload any more: the resident simply states
+  /// the amount and the month/year, the payment is stored as `pending`, and the
+  /// treasurer verifies it manually from the treasurer screen.
+  Future<String?> submitPayment({
     required String userId,
     required String userName,
     required String userPhone,
@@ -19,32 +18,9 @@ class DuesService {
     required double amount,
     required String month,
     required int year,
-    required XFile receiptFile,
     String? notes,
   }) async {
     try {
-      // Upload receipt image
-      final String fileName =
-          'receipts/${userId}_${DateTime.now().millisecondsSinceEpoch}.jpg';
-      final storageRef = _storage.ref(fileName);
-
-      String receiptUrl;
-
-      if (kIsWeb) {
-        // For web, use putData with bytes
-        final bytes = await receiptFile.readAsBytes();
-        final uploadTask = await storageRef.putData(
-          bytes,
-          SettableMetadata(contentType: 'image/jpeg'),
-        );
-        receiptUrl = await uploadTask.ref.getDownloadURL();
-      } else {
-        // For mobile, use putFile
-        final file = File(receiptFile.path);
-        final uploadTask = await storageRef.putFile(file);
-        receiptUrl = await uploadTask.ref.getDownloadURL();
-      }
-
       // Create payment with pending status
       // Verification will be done server-side or by treasurer
       final payment = DuesPayment(
@@ -56,7 +32,7 @@ class DuesService {
         amount: amount,
         month: month,
         year: year,
-        receiptImageUrl: receiptUrl,
+        receiptImageUrl: '',
         status: PaymentStatus.pending,
         createdAt: DateTime.now(),
         isAutoVerified: false,

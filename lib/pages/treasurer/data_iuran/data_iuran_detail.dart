@@ -7,8 +7,6 @@ import 'package:wargaja/modules/community/models/dues_payment.dart';
 import 'package:wargaja/modules/community/services/dues_service.dart';
 import 'package:wargaja/pages/treasurer/data_iuran/widgets/iuran_info_card.dart';
 import 'package:wargaja/pages/treasurer/data_iuran/widgets/bukti_pembayaran_card.dart';
-import 'package:wargaja/pages/general/ml_inference_test/services/ml_firebase_service.dart';
-import 'package:http/http.dart' as http;
 
 class DataIuranDetail extends StatefulWidget {
   final DuesPayment payment;
@@ -20,97 +18,13 @@ class DataIuranDetail extends StatefulWidget {
 
 class _DataIuranDetailState extends State<DataIuranDetail> {
   final DuesService _duesService = DuesService();
-  bool _isRevalidating = false;
   bool _isProcessing = false;
   final TextEditingController _rejectNoteCtrl = TextEditingController();
-  Map<String, dynamic>? _validationResult;
 
   @override
   void dispose() {
     _rejectNoteCtrl.dispose();
     super.dispose();
-  }
-
-  Future<void> _revalidateReceipt() async {
-    setState(() {
-      _isRevalidating = true;
-    });
-
-    try {
-      // Download the receipt image
-      final response = await http.get(
-        Uri.parse(widget.payment.receiptImageUrl),
-      );
-
-      if (response.statusCode != 200) {
-        throw Exception('Failed to download receipt image');
-      }
-
-      final imageBytes = response.bodyBytes;
-      final expectedAmount = 'Rp${widget.payment.amount.toStringAsFixed(0)}';
-
-      // Call Firebase Functions to validate receipt
-      final result = await MLFirebaseService.detectFakeReceipt(
-        imageBytes,
-        expectedAmount,
-      );
-
-      if (!mounted) return;
-
-      if (result['success'] == true) {
-        setState(() {
-          _validationResult = result;
-        });
-
-        final verification = result['verification'] as Map<String, dynamic>?;
-        final summary = verification?['summary'] as Map<String, dynamic>?;
-        final isPassed = summary?['passed'] == true;
-        final verdict = summary?['final_verdict'] ?? 'Unknown';
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Validasi ulang selesai: $verdict'),
-            backgroundColor: isPassed ? AppColors.success : AppColors.error,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            duration: const Duration(seconds: 4),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Error validasi: ${result['error'] ?? 'Unknown error'}',
-            ),
-            backgroundColor: Colors.red,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        );
-      }
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error: $e'),
-          backgroundColor: Colors.red,
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-      );
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isRevalidating = false;
-        });
-      }
-    }
   }
 
   Future<void> _accept() async {
@@ -142,8 +56,8 @@ class _DataIuranDetailState extends State<DataIuranDetail> {
       if (success) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: const Text('Pembayaran berhasil dikonfirmasi dan dicatat'),
-            backgroundColor: Colors.green,
+            content: const Text('Pembayaran berhasil diverifikasi (manual) dan dicatat'),
+            backgroundColor: AppColors.success,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -154,7 +68,7 @@ class _DataIuranDetailState extends State<DataIuranDetail> {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Gagal mengkonfirmasi pembayaran'),
+            content: Text('Gagal memverifikasi pembayaran'),
             backgroundColor: Colors.red,
           ),
         );
@@ -333,131 +247,9 @@ class _DataIuranDetailState extends State<DataIuranDetail> {
     }
   }
 
-  void _showFullImage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          backgroundColor: Colors.transparent,
-          insetPadding: const EdgeInsets.all(16),
-          child: Stack(
-            children: [
-              Center(
-                child: InteractiveViewer(
-                  minScale: 0.5,
-                  maxScale: 4.0,
-                  child: Container(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width - 32,
-                      maxHeight: MediaQuery.of(context).size.height - 100,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.network(
-                        widget.payment.receiptImageUrl,
-                        fit: BoxFit.contain,
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Container(
-                            width: 200,
-                            height: 200,
-                            color: Colors.grey[200],
-                            child: Center(
-                              child: CircularProgressIndicator(
-                                value:
-                                    loadingProgress.expectedTotalBytes != null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                          loadingProgress.expectedTotalBytes!
-                                    : null,
-                              ),
-                            ),
-                          );
-                        },
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            width: 200,
-                            height: 200,
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.error_outline,
-                                    size: 48,
-                                    color: Colors.red[400],
-                                  ),
-                                  const SizedBox(height: 8),
-                                  const Text(
-                                    'Gagal memuat gambar',
-                                    style: TextStyle(color: Colors.black87),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 16,
-                right: 16,
-                child: GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: Colors.black54,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.close,
-                      color: Colors.white,
-                      size: 24,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final payment = widget.payment;
-    final isAsli =
-        payment.verificationScore != null && payment.verificationScore! >= 0.7;
-
-    // Check if we have a validation result from revalidation
-    bool isRevalidated = _validationResult != null;
-    bool isRevalidatedValid = false;
-    double? revalidationScore;
-
-    if (isRevalidated) {
-      final verification =
-          _validationResult!['verification'] as Map<String, dynamic>?;
-      final summary = verification?['summary'] as Map<String, dynamic>?;
-      final layoutValidation =
-          verification?['layout_validation'] as Map<String, dynamic>?;
-
-      isRevalidatedValid = summary?['passed'] == true;
-      revalidationScore = layoutValidation?['similarity_score'];
-    }
-
-    // Use revalidation result if available, otherwise use original
-    final displayIsValid = isRevalidated ? isRevalidatedValid : isAsli;
-    final displayScore = isRevalidated
-        ? revalidationScore
-        : payment.verificationScore;
 
     return Scaffold(
       backgroundColor: Colors.grey[50],
@@ -543,254 +335,6 @@ class _DataIuranDetailState extends State<DataIuranDetail> {
               ),
             ),
 
-            const SizedBox(height: 16),
-
-            // Receipt Validation Card
-            Card(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 0,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: displayIsValid
-                        ? AppColors.success.withOpacity(0.2)
-                        : AppColors.error.withOpacity(0.2),
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Row(
-                            children: [
-                              Icon(
-                                Icons.receipt_long,
-                                size: 20,
-                                color: AppColors.primary,
-                              ),
-                              SizedBox(width: 8),
-                              Text(
-                                'Bukti Pembayaran',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ],
-                          ),
-                          IconButton(
-                            onPressed: _showFullImage,
-                            icon: const Icon(Icons.zoom_in),
-                            tooltip: 'Lihat Penuh',
-                            style: IconButton.styleFrom(
-                              backgroundColor: AppColors.primary.withOpacity(
-                                0.12,
-                              ),
-                              foregroundColor: AppColors.primary,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-                      GestureDetector(
-                        onTap: _showFullImage,
-                        child: BuktiPembayaranCard(
-                          proofUrl: payment.receiptImageUrl,
-                          height: 300,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-
-                      // ML Detection Result
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: displayIsValid
-                              ? AppColors.success.withOpacity(0.08)
-                              : AppColors.error.withOpacity(0.08),
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: displayIsValid
-                                ? AppColors.success.withOpacity(0.3)
-                                : AppColors.error.withOpacity(0.3),
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(6),
-                                  decoration: BoxDecoration(
-                                    color: displayIsValid
-                                        ? AppColors.success
-                                        : AppColors.error,
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Icon(
-                                    displayIsValid
-                                        ? Icons.verified_outlined
-                                        : Icons.warning_amber_rounded,
-                                    size: 18,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Text(
-                                            'Hasil Deteksi AI',
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          if (isRevalidated) ...[
-                                            const SizedBox(width: 6),
-                                            Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                    horizontal: 6,
-                                                    vertical: 2,
-                                                  ),
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primary,
-                                                borderRadius:
-                                                    BorderRadius.circular(4),
-                                              ),
-                                              child: const Text(
-                                                'UPDATED',
-                                                style: TextStyle(
-                                                  fontSize: 9,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ],
-                                      ),
-                                      const SizedBox(height: 2),
-                                      Text(
-                                        displayIsValid
-                                            ? 'Bukti Valid'
-                                            : 'Perlu Pemeriksaan',
-                                        style: TextStyle(
-                                          color: displayIsValid
-                                              ? AppColors.success
-                                              : AppColors.error,
-                                          fontWeight: FontWeight.w800,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                      if (displayScore != null) ...[
-                                        const SizedBox(height: 4),
-                                        Text(
-                                          'Skor: ${(displayScore * 100).toStringAsFixed(0)}%',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.grey[600],
-                                          ),
-                                        ),
-                                      ],
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 12),
-                            OutlinedButton.icon(
-                              onPressed: _isRevalidating
-                                  ? null
-                                  : _revalidateReceipt,
-                              icon: _isRevalidating
-                                  ? const SizedBox(
-                                      width: 14,
-                                      height: 14,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                      ),
-                                    )
-                                  : const Icon(Icons.refresh, size: 16),
-                              label: const Text('Cek Ulang'),
-                              style: OutlinedButton.styleFrom(
-                                foregroundColor: AppColors.primary,
-                                side: const BorderSide(
-                                  color: AppColors.primary,
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 10,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            Text(
-                              displayIsValid
-                                  ? 'Sistem AI menganalisis bukti ini sebagai gambar asli dan tidak terdeteksi adanya manipulasi digital.'
-                                  : 'Sistem AI mendeteksi kemungkinan manipulasi pada bukti ini. Harap lakukan pemeriksaan manual dengan teliti.',
-                              style: TextStyle(
-                                color: Colors.grey[700],
-                                fontSize: 13,
-                                height: 1.4,
-                              ),
-                            ),
-                            if (isRevalidated &&
-                                _validationResult!['verification'] != null) ...[
-                              const Divider(height: 20),
-                              _buildValidationDetails(
-                                _validationResult!['verification'],
-                              ),
-                            ],
-                            const Divider(height: 20),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.info_outline,
-                                  size: 16,
-                                  color: Colors.grey[600],
-                                ),
-                                const SizedBox(width: 6),
-                                Expanded(
-                                  child: Text(
-                                    'Bendahara tetap perlu melakukan verifikasi manual untuk memastikan kebenaran transaksi.',
-                                    style: TextStyle(
-                                      color: Colors.grey[600],
-                                      fontSize: 12,
-                                      fontStyle: FontStyle.italic,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-
             const SizedBox(height: 20),
 
             // Action Buttons
@@ -865,97 +409,6 @@ class _DataIuranDetailState extends State<DataIuranDetail> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildValidationDetails(Map<String, dynamic> verification) {
-    final fieldVerification =
-        verification['field_verification'] as Map<String, dynamic>?;
-    final lineValidation =
-        verification['line_validation'] as Map<String, dynamic>?;
-    final layoutValidation =
-        verification['layout_validation'] as Map<String, dynamic>?;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Detail Validasi:',
-          style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        if (fieldVerification != null) ...[
-          ...fieldVerification.entries.take(2).map((entry) {
-            final field = entry.value as Map<String, dynamic>;
-            final isMatch = field['is_match'] == true;
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 4),
-              child: Row(
-                children: [
-                  Icon(
-                    isMatch ? Icons.check_circle : Icons.cancel,
-                    size: 14,
-                    color: isMatch ? AppColors.success : AppColors.error,
-                  ),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      '${entry.key.replaceAll('_', ' ')}: ${field['expected']} ${isMatch ? '✓' : '✗'}',
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }),
-        ],
-        if (lineValidation != null) ...[
-          const SizedBox(height: 4),
-          Row(
-            children: [
-              Icon(
-                lineValidation['is_valid'] == true
-                    ? Icons.check_circle
-                    : Icons.info,
-                size: 14,
-                color: lineValidation['is_valid'] == true
-                    ? AppColors.success
-                    : Colors.orange,
-              ),
-              const SizedBox(width: 6),
-              Expanded(
-                child: Text(
-                  'Lines: ${lineValidation['detected_lines']}/${lineValidation['expected_lines']}',
-                  style: const TextStyle(fontSize: 12),
-                ),
-              ),
-            ],
-          ),
-        ],
-        if (layoutValidation != null) ...[
-          const SizedBox(height: 4),
-          Row(
-            children: [
-              Icon(
-                layoutValidation['is_valid'] == true
-                    ? Icons.check_circle
-                    : Icons.info,
-                size: 14,
-                color: layoutValidation['is_valid'] == true
-                    ? AppColors.success
-                    : Colors.orange,
-              ),
-              const SizedBox(width: 6),
-              Expanded(
-                child: Text(
-                  'Layout similarity: ${((layoutValidation['similarity_score'] ?? 0) * 100).toStringAsFixed(0)}%',
-                  style: const TextStyle(fontSize: 12),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ],
     );
   }
 }
