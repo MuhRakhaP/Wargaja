@@ -25,6 +25,10 @@ import 'package:wargaja/modules/community/pages/document_request_form_screen.dar
 import 'package:wargaja/modules/community/pages/home_details_screen.dart';
 import 'package:wargaja/pages/resident/report_issue_screen.dart';
 import 'package:wargaja/pages/resident/submit_suggestion_screen.dart';
+import 'package:wargaja/pages/resident/payment_history_screen.dart';
+import 'package:wargaja/pages/resident/digital_receipts_screen.dart';
+import 'package:wargaja/pages/resident/residents_directory_screen.dart';
+import 'package:wargaja/pages/resident/emergency_contacts_screen.dart';
 import 'package:wargaja/pages/rt/announcements/announcements_screen.dart';
 
 final residentRoutes = [
@@ -225,6 +229,26 @@ final residentRoutes = [
     path: '/resident/announcements',
     name: 'resident-announcements',
     builder: (context, state) => const AnnouncementsScreen(),
+  ),
+  GoRoute(
+    path: '/resident/payment-history',
+    name: 'resident-payment-history',
+    builder: (context, state) => const PaymentHistoryScreen(),
+  ),
+  GoRoute(
+    path: '/resident/digital-receipts',
+    name: 'resident-digital-receipts',
+    builder: (context, state) => const DigitalReceiptsScreen(),
+  ),
+  GoRoute(
+    path: '/resident/residents-directory',
+    name: 'resident-residents-directory',
+    builder: (context, state) => const ResidentsDirectoryScreen(),
+  ),
+  GoRoute(
+    path: '/resident/emergency-contacts',
+    name: 'resident-emergency-contacts',
+    builder: (context, state) => const EmergencyContactsScreen(),
   ),
   GoRoute(
     path: '/resident/announcements/:id',

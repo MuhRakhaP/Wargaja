@@ -92,11 +92,11 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
           retention-days: 30
       
-      - name: Deploy Firestore Rules to Firebase
+      - name: Deploy Firestore Rules & Indexes to Firebase
         if: github.event_name != 'pull_request'
         uses: w9jds/firebase-action@v15.34.2
         with:
-          args: deploy --only firestore:rules --project wargaja-91e14 --non-interactive
+          args: deploy --only firestore:rules,firestore:indexes --project wargaja-91e14 --non-interactive
         env:
           GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
 
