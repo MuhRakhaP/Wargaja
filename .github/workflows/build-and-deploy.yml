@@ -46,6 +46,9 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Set up Gradle cache
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Set up release signing
         env:
           ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
@@ -68,7 +71,17 @@ jobs:
           echo "Release signing configured."
 
       - name: Build APK (Release)
-        run: flutter build apk --release --build-number=${{ github.run_number }}
+        run: |
+          for attempt in 1 2 3; do
+            echo "Build attempt $attempt of 3"
+            if flutter build apk --release --build-number=${{ github.run_number }}; then
+              exit 0
+            fi
+            echo "::warning::Build attempt $attempt failed (likely a transient dependency download error). Retrying in 30s..."
+            sleep 30
+          done
+          echo "::error::Build failed after 3 attempts"
+          exit 1
 
       - name: Verify signing certificate
         env:
